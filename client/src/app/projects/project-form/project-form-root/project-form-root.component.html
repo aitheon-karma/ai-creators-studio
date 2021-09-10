@@ -1,0 +1,35 @@
+<div class="card ">
+  <div class="form-wrap">
+    <ai-project-form-type (changeType)="changeType($event)"
+                          [Workspace]="workspace"
+                          [project]="project"></ai-project-form-type>
+    <div class="form-settings-wrap" *ngIf="specProjType">
+      <ai-project-form-start  #projectFormStart
+                              [NewWorkspace]="newWorkspace"
+                              [Workspace]="workspace"
+                              [project]="project"
+                              [workspaces]="workspaces"
+                              [specProjType]="specProjType"
+                              [getWorkspace]="getWorkspace"
+                              (availableOutput)="checkNameAvailable($event)"></ai-project-form-start>
+      <!-- <ai-project-form-settings *ngIf="workflow.state === 1" #projectFormSettings
+                                [Workspace]="workspace" [project]="project"
+                                [Workflow]="workflow"></ai-project-form-settings> -->
+    </div>
+    <div  class="form-settings-wrap form-settings-wrap--empty"
+          *ngIf="!specProjType">
+      Choose project type
+    </div>
+  </div>
+  <div class="creator_modal_footer">
+    <button class="button button--ghost button--medium mr-2"
+            (click)="cancel()" id="cancel">
+      Cancel
+    </button>
+    <!-- <button id="next" class="button button--contained button--medium" value="1" *ngIf="!workflow.finished"  (click)="next()">Next</button> -->
+    <button class="button button--contained button--medium" 
+            [disabled]="!available || !onNext" (click)="finish()" id="finish">
+      Create
+    </button>
+  </div>
+</div>

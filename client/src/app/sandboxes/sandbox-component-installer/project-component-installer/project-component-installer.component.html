@@ -1,0 +1,69 @@
+<div class="component" *ngIf="!loading">
+  <div class="d-flex justify-content-between align-items-center mb--8">
+    <span class="component__name">
+      {{ projectComponent.name }}
+    </span>
+    <div class="component__actions">
+      <button type="button" class="button button--small button--ghost"
+              (click)="installComponent()"
+              [class.button--disabled]="versionForm?.invalid"
+              [disabled]="versionForm?.invalid"
+              *ngIf="!projectComponent.installStatus?.installed &&
+              !projectComponent.installStatus.installing &&
+              !projectComponent.installStatus.error">
+        Install
+      </button>
+      <button type="button"
+              class="button button--small button--ghost button--error"
+              *ngIf="projectComponent.installStatus?.installed &&
+              !projectComponent.installStatus.installing &&
+              !projectComponent.installStatus.error">
+        Uninstall
+      </button>
+      <button type="button" class="button button--small button--ghost button--blue"
+              *ngIf="!projectComponent.installStatus?.latest">
+        <span class="icon icon--upload icon--size-16px mr--8"></span>
+        Update to latest
+      </button>
+      <span class="status status--progress" *ngIf="projectComponent.installStatus?.installing">
+        Installing...
+      </span>
+      <span class="status status--error" *ngIf="projectComponent.installStatus?.error">
+        Error
+      </span>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+    <form [formGroup]="versionForm">
+      <div class="form-group form-group--inline mb--0">
+        <label>Release version:</label>
+        <div>
+          <ng-select class="dropdown dropdown--contained"
+                     [items]="projectComponent?.versions"
+                     [selectOnTab]="true"
+                     bindLabel="tag"
+                     bindValue="_id"
+                     labelForId="id"
+                     [clearable]="false"
+                     [searchable]="false"
+                     placeholder="Select Release"
+                     formControlName="versionId">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div>
+                <span [ngOptionHighlight]="search">
+                  {{item.tag}}
+                </span>
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </form>
+    <div class="form-group form-group--inline mb--0 ml--auto">
+      <label>From:</label>
+      <span class="chip chip--active">
+        {{ projectComponent?.origin }}
+      </span>
+    </div>
+  </div>
+</div>

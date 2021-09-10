@@ -1,0 +1,286 @@
+.btn {
+  box-shadow: none;
+}
+
+h2 {
+  text-decoration: underline;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+i {
+  color: #000;
+  text-align: center;
+  font-size: 60px;
+}
+
+.radio-btn {
+  color: #000;
+  font-size: 4px;
+  vertical-align: middle;
+  margin-right: 10px;
+  border-color: #000;
+}
+
+.workspace .inputfield {
+  width: 200px;
+}
+
+.workspace span {
+  padding: 0 10px;
+}
+
+.workspace {
+  margin-bottom: 20px;
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__name {
+    font-size: 14px;
+    position: relative;
+    min-height: 32px;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    cursor: pointer;
+    background: #1f1f1f;
+    border-radius: 2px;
+    user-select: none;
+    cursor: default;
+
+    &:hover {
+      border: 1px solid #454545;
+    }
+
+    &--active {
+      border: 1px solid #dcbc65 !important;
+    }
+
+    i {
+      font-size: 14px;
+      color: #7e7e7e;
+      position: absolute;
+      right: 10px;
+      top: 9px;
+    }
+  }
+
+  &__select {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    z-index: 99;
+    background: #363636;
+    border-radius: 2px;
+    box-shadow: 0 6px 7px 0 var(--black-10);
+    padding: 0;
+    max-height: 400px;
+
+    span {
+      padding: 0;
+      margin-right: 2px;
+    }
+  }
+
+  .opened {
+    display: flex;
+  }
+
+  &__add {
+    padding: 10px 15px;
+    width: 100%;
+    border-bottom: 1px solid #424242;
+    cursor: pointer;
+
+    &:hover {
+      background: #454545;
+    }
+
+    .add-new {
+      font-size: 30px;
+      top: 9px;
+      right: 15px;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    input {
+      width: 195px;
+      padding: 8px 16px;
+      background-color: #1e1e1e;
+      border-radius: 2px;
+      font-size: 14px;
+      color: #7e7e7e;
+      height: 35px !important;
+      margin: 0;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar-track {
+      background-color: #353535;
+    }
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      background-color: #353535;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #494949;
+    }
+
+    h4 {
+      margin-top: 15px;
+      font-size: 12px;
+    }
+
+    li {
+      padding: 7px 5px;
+      cursor: pointer;
+      font-size: 14px;
+
+      &:hover {
+        background: #454545;
+      }
+    }
+
+    .selected {
+      background: #454545;
+    }
+  }
+
+  &__list-recent {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #424242;
+    padding-bottom: 7px;
+  }
+}
+
+.project-name {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.project-name h2 {
+  display: inline-block;
+}
+
+.project-name input {
+  display: block;
+  width: 100%;
+}
+
+.projectType {
+  margin-bottom: 20px;
+  margin-top: 30px;
+  position: relative;
+  left: 14px;
+  margin-right: 14px;
+  flex-direction: column;
+}
+
+.inputfield {
+  border-radius: 5px;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  width: 150px;
+  font-size: 20px;
+}
+
+.cancel_btn {
+  float: left;
+}
+
+.next_btn {
+  float: right;
+}
+
+.finish_btn {
+  float: right;
+}
+
+.card {
+  border: none;
+  box-shadow: none;
+}
+
+.project-form {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.language-select {
+  margin-bottom: 24px;
+}
+
+.compiler {
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 2px;
+  border-radius: 2px;
+  background: #222222;
+  display: flex;
+  margin-bottom: 20px;
+
+  &__name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    color: #fff;
+
+    span {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.label-danger {
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
+.projects-new-switcher {
+  .switch-container {
+    display: flex;
+    justify-content: space-between;
+
+    label {
+      margin: 0;
+    }
+  }
+}
+
+.project-form-section {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+label {
+  font-size: 14px !important;
+}

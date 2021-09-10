@@ -1,0 +1,47 @@
+<ng-template #quickReleaseTemplate>
+  <div class="modal-header">
+      <h4 class="modal-title pull-left">Select Project</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <div class="quick-release" *ngIf="!loading; else loadingTemplate">
+      <h4 class="quick-release__error" *ngIf="errorMessage">No Projects active</h4>
+      <ul class="quick-release__nav" *ngIf="!errorMessage">
+        <li class="project-wrap" *ngFor="let project of projectList" (click)="selectProject(project)" >
+
+          <div class="quick-release__selected" *ngIf="selectedProject == project">
+            <div class="checkbox mr--16">
+              <input (click)="$event.preventDefault();" type="checkbox" checked class="checkbox__input ng-valid ng-dirty ng-touched">
+              <label class="checkbox__label"></label>
+            </div>
+          </div>
+
+          <div class="file-type-wrap">
+            <div class="file-img-wrap">
+              <img class="project-img" src="assets/img/creator-project-file.svg" alt="File">
+              <span class="file-type yellow text-capitalize">{{project.language | prettyEnum}}</span>
+            </div>
+            <span class="project-type grey text-capitalize">{{project.projectType | prettyEnum}}</span>
+          </div>
+          <div class="file-footer-wrap">
+            <h4>{{project.name}}</h4>
+            <!-- <span class="grey">Last edited {{project.updatedAt | editDate}}</span> -->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="button button--ghost button--medium mr--8" (click)="closeModal()">Cancel</button>
+    <button class="button button--contained button--medium" [disabled]="!selectedProject" (click)="release()" >Release</button
+  ></div>
+</ng-template>
+
+
+<ng-template #loadingTemplate>
+  <div class="d-flex align-items-center justify-content-center w-100" style="height: 200px;">
+    <ai-loading class="d-block"></ai-loading>
+  </div>
+</ng-template>

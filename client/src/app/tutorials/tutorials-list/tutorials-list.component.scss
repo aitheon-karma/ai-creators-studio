@@ -1,0 +1,29 @@
+.tutorials {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.tutorial {
+    height: 190px;
+    position: relative;
+    border-radius: 2px;
+    cursor: pointer;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    span {
+        padding: 8px;
+        background: #282828;
+        color: #fff;
+        opacity: 0.95;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 14px;
+    }
+}

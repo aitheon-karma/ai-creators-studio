@@ -1,0 +1,145 @@
+<ng-template #sandboxComponentInstallerTemplate>
+  <div class="modal-header modal-header--component-manager pt--16 pb--16">
+    <h4 class="modal-title">Component Installer</h4>
+    <button type="button"
+            class="button button--ghost button--small mr--16 ml--auto"
+            (click)="browseMarketplace()">
+      Browse marketplace
+    </button>
+    <button type="button"
+            class="icon icon--close icon--dynamic"
+            aria-label="Close"
+            (click)="closeModal()">
+    </button>
+  </div>
+  <div class="modal-body pb--24" *ngIf="!loading; else loadingTemplate">
+
+    <div *ngIf="!loading && !error && projects?.length">
+      <form [formGroup]="installerForm">
+        <div class="form-group form-group--inline">
+          <label>Project to install:</label>
+          <div>
+            <ng-select class="dropdown dropdown--contained"
+                       [items]="projects"
+                       [selectOnTab]="true"
+                       bindLabel="name"
+                       bindValue="_id"
+                       labelForId="id"
+                       [clearable]="false"
+                       [searchable]="false"
+                       placeholder="Select Project"
+                       formControlName="projectId">
+              <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                <div><span [ngOptionHighlight]="search">
+                  {{item.name}}
+                </span></div>
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+      </form>
+
+      <tabset class="tabs tabs--small">
+        <div class="position-relative">
+          <form class="mt--24 mb--24 search-container search-container--contained"
+                [class.search-container--filled]="searchForm.get('search').value.length"
+                [formGroup]="searchForm">
+            <input class="search-container__input"
+                   type="search"
+                   placeholder="Search by name..."
+                   formControlName="search">
+            <div class="search-container__button icon icon--search icon--size-16px"></div>
+            <div class="search-container__button icon icon--close icon--dynamic icon--size-16px"
+                 (click)="searchForm.get('search').setValue('')"></div>
+          </form>
+          <div class="no-results-text no-results-text--no-components">
+            <span class="text-center">No Components found</span>
+          </div>
+        </div>
+        <tab heading="All Components ({{componentProjects?.length}})"
+             [active]="tabState === currentTab.ALL"
+             (selectTab)="switchTab(currentTab.ALL)">
+          <div class="components-list">
+            <ai-project-component-installer
+              *ngFor="let component of componentProjects"
+              [data]="{ projectId: installerForm.get('projectId').value, sandboxId: sandboxId, component: component }"
+              [hidden]="tabState === currentTab.ALL &&
+              searchActive &&
+              !component.name.toLowerCase().includes(searchForm.get('search').value.toLowerCase())"
+              class="component">
+            </ai-project-component-installer>
+          </div>
+        </tab>
+        <tab heading="My Components"
+             [active]="tabState === currentTab.MY"
+             (selectTab)="switchTab(currentTab.MY)">
+          <div class="components-list">
+            <ai-project-component-installer
+              *ngFor="let component of myComponentProjects"
+              [data]="{ projectId: installerForm.get('projectId').value, sandboxId: sandboxId, component: component }"
+              [hidden]="tabState === currentTab.ALL &&
+              searchActive &&
+              !component.name.toLowerCase().includes(searchForm.get('search').value.toLowerCase())"
+              class="component">
+            </ai-project-component-installer>
+          </div>
+        </tab>
+        <tab heading="From Marketplace"
+             [active]="tabState === currentTab.MARKETPLACE"
+             (selectTab)="switchTab(currentTab.MARKETPLACE)">
+          <div class="components-list">
+            <ai-project-component-installer
+              *ngFor="let component of marketComponentProjects"
+              [data]="{ projectId: installerForm.get('projectId').value, sandboxId: sandboxId, component: component }"
+              [hidden]="tabState === currentTab.ALL &&
+              searchActive &&
+              !component.name.toLowerCase().includes(searchForm.get('search').value.toLowerCase())"
+              class="component">
+            </ai-project-component-installer>
+          </div>
+        </tab>
+        <tab heading="Already installed"
+             [active]="tabState === currentTab.INSTALLED"
+             (selectTab)="switchTab(currentTab.INSTALLED)">
+          <div class="components-list">
+            <ai-project-component-installer
+              *ngFor="let component of installedComponentProjects"
+              [data]="{ projectId: installerForm.get('projectId').value, sandboxId: sandboxId, component: component }"
+              [hidden]="tabState === currentTab.ALL &&
+              searchActive &&
+              !component.name.toLowerCase().includes(searchForm.get('search').value.toLowerCase())"
+              class="component">
+            </ai-project-component-installer>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+
+    <div class="no-results-text" *ngIf="projects && projects.length === 0 && !loading">
+      <span class="text-center">Please load app type project to add component</span>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="button button--ghost button--medium mr--8"
+            (click)="closeModal()">
+      Cancel
+    </button>
+  </div>
+
+  <!-- this button is not on design -->
+  <!-- div class="modal-footer"
+       *ngIf="installStatus.initiated && (installStatus.error || installStatus.success)">
+    <button (click)="reloadWindow()"
+            class="button button--contained button--medium">
+      Reload
+    </button>
+  </div -->
+</ng-template>
+
+
+<ng-template #loadingTemplate>
+  <div class="d-flex align-items-center justify-content-center w-100" style="height: 200px;">
+    <ai-loading class="d-block"></ai-loading>
+  </div>
+</ng-template>

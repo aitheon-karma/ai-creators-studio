@@ -1,0 +1,8 @@
+<div class="tutorials">
+  <a  class="tutorial"
+      [href]="tutorial.link"
+      *ngFor="let tutorial of tutorials"
+      [ngStyle]="{'background-image': 'url(' + tutorial.image?.url + ')'}">
+    <span>{{tutorial.name}}</span>
+  </a>
+</div>

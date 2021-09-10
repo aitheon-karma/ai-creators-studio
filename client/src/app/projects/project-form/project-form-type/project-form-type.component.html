@@ -1,0 +1,15 @@
+<div class="project-type">
+  <h4 class="grey project-type__title">Project types</h4>
+  <ul class="project-type__nav">
+    <li *ngFor="let item of types | keyvalue">
+      <label class="type-btn" ngbButtonLabel [ngClass]="{'checked': getType(item.key)}">
+        <div class="checker"><span class="inner"></span></div>
+        <input type="radio" class="checkform" [value]="item.key" name='Project-type' ngbButton (change)="projectTypeSelector(item)"><br>
+        <div class="type-icon-container">
+          <span class="type-icon" [ngStyle]="{'background-image': 'url(' + item.value.icon + ')' }"></span>
+        </div>
+        <span class="projName">{{ item.value.title }}</span>
+      </label>
+    </li>
+  </ul>
+</div>

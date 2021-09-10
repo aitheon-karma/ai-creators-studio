@@ -1,0 +1,62 @@
+<ng-template #releaseFormModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">New Release</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body pb-0 px-4 pt-4">
+        <form [formGroup]="releaseForm" *ngIf="releaseForm"
+              class="release-form" (ngSubmit)="onSubmit()">
+            
+            <div class="release-form__section--big">
+                <div class="release-form__section release-form__section--tag">
+                    <label>Tag</label>
+                    <div class="input-wrap input-wrap--contained input-wrap--small"> 
+                        <input formControlName="tag" type="text"
+                               autocomplete="off" class="input-wrap__input">
+                    </div>
+                </div>
+                <div class="release-form__section release-form__section--name">
+                    <label>Name</label>
+                    <div class="input-wrap input-wrap--contained input-wrap--small">
+                        <input formControlName="name" type="text"
+                               autocomplete="off" class="input-wrap__input">
+                    </div>
+                </div>
+            </div>
+            <div class="release-form__section">
+                <label>Description</label>
+                <div class="textarea-wrap textarea-wrap--contained">
+                    <textarea formControlName="description" type="text" 
+                              autocomplete="off" class="textarea-wrap__textarea"
+                              rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="release-form__section">
+                <label>Visibility</label>
+                <ng-select class="dropdown dropdown--contained"
+                           placeholder="Visibility"
+                           [searchable]="false"
+                           [clearable]="false"
+                           bindValue="value"
+                           bindLabel="label"
+                           [items]="visibility"
+                           formControlName="visibility">
+                </ng-select>
+            </div>
+            <div class="modal-footer">
+                <button class="button button--ghost button--medium ml-auto"
+                        (click)="closeModal()"
+                        type="button">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="button button--contained button--medium">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>

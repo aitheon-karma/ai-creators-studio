@@ -1,0 +1,32 @@
+<ng-template #deleteModalTempalate>
+  <div class="modal-body text-center">
+    <div class="row">
+      <div class="col-3">
+        <div class="swal2-icon swal2-warning swal2-animate-warning-icon swal-icon-wrap"></div>
+      </div>
+      <div class="col-9 swal-text-wrap">
+        <p class="mb-0" style="font-weight: bold; " *ngIf="deleteType==='project' || deleteType==='workspace'">
+          Are you sure you want to move '{{ deleteEvent.content.name }}' {{ deleteType }} to archive?
+        </p>
+        <p class="mb-0" style="font-weight: bold; " *ngIf="deleteType!=='project' && deleteType!=='workspace'">
+          Are you sure you want to remove '{{ deleteEvent.content.name }}' {{ deleteType }}?
+        </p>
+        <p *ngIf="deleteType !== 'project'" class="small text-muted mt-1">This cannot be undone.</p>
+      </div>
+    </div>
+    <div class="creator_modal_footer">
+        <button id="cancel"
+                class="button button--medium button--ghost mr-2"
+                (click)="cancelDelete()">
+          No
+        </button>
+        <button id="next"
+                [disabled]="deleteEvent.content.deleting"
+                class="button button--medium button--contained"
+                (click)="confirmDelete()">
+          <span *ngIf="!deleteEvent.content.deleting">Yes</span>
+          <!-- <ai-loading class="sm inline white" *ngIf="loading"></ai-loading> -->
+        </button>
+      </div>
+  </div>
+</ng-template>

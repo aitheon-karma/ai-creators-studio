@@ -1,0 +1,45 @@
+<ng-template #buildStatusTemplate>
+  <div class="modal-header">
+      <h4 class="modal-title pull-left">Release Status</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body p-4">  
+    <h4 class="build-status__empty"
+        *ngIf="!statuses || !statuses.length">
+      No builds available
+    </h4>
+    <div class="build-status" *ngIf="statuses.length">
+        <div class="build-status__head mb--8">
+          <div class="build-status__head--project">Project</div>
+          <div class="build-status__head--details">Details</div>
+          <div class="build-status__head--status">Status</div>
+        </div>
+        <div class="build-status__item" *ngFor="let status of statuses">
+          <div class="build-status__item--project">
+            {{ status.projectName }}
+          </div>
+          <div class="build-status__item--details">
+            {{ status.currentTask || '' }}
+          </div>
+          <div class="build-status__item--status"
+               *ngIf="getCurrentTask(status) as statusInfo"
+               [ngClass]="statusInfo.cssClass">
+            {{ statusInfo.name }}
+          </div>
+        </div>
+        <!-- *ngIf="statuses && statuses.length" -->
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="button button--ghost button--medium mr--8" (click)="closeModal()">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #loadingTemplate>
+  <div class="d-flex align-items-center justify-content-center w-100" style="height: 200px;">
+    <ai-loading class="d-block"></ai-loading>
+  </div>
+</ng-template>

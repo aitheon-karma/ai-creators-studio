@@ -1,0 +1,83 @@
+.component {
+  margin-bottom: 4px;
+  background: rgb(56, 56, 56);
+  border-radius: 2px;
+  width: 100%;
+  padding: 16px 24px;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 4px;
+    background-color: #2b2b2b;
+  }
+
+  &__name {
+    display: block;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 0.1px;
+    line-height: 24px;
+    margin-right: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.form-group--inline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  label+div {
+    width: 100%;
+    min-width: 200px;
+    max-width: 200px;
+  }
+
+  label {
+    margin: 0 16px 0 0 !important;
+    white-space: nowrap;
+  }
+}
+
+.chip--active {
+  border-color: rgb(69, 69, 69) !important;
+}
+
+.button--ghost.button--blue {
+  color: #589be9 !important;
+
+  &:hover {
+    background-color: rgba(#589be9, .15);
+  }
+
+  .icon::before {
+    color: #589be9 !important;
+  }
+}
+
+.status {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+
+  &--progress {
+    color: #ed9438;
+  }
+  &--error {
+    color: #e96058;
+  }
+}

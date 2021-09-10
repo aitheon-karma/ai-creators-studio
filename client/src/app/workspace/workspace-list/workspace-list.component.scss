@@ -1,0 +1,16 @@
+.workspace-item-wrap {
+    cursor: pointer;
+    padding: 10px 20px; 
+    border-bottom: 1px solid lightgray;
+    &:hover {
+ 
+        z-index: 2;
+       
+        background-color: lightgray;
+       
+      }
+}
+
+.active-project {
+    background-color: lightgray;
+}

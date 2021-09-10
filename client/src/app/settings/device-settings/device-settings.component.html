@@ -1,0 +1,63 @@
+<form [formGroup]="settingsForm">
+  <div>
+    <div formGroupName="settings" class="row mt-2">
+
+      <div class="col-md-7">
+
+        <div class="row">
+          <div class="col-12">
+            <div>
+              <label class="grey">Device Type</label>
+              <div class="form-group mb-0">
+                <ng-select [items]="deviceTypes" [selectOnTab]="true" bindLabel="name" bindValue="id" [clearable]='false'
+                  placeholder="Select Device Type" formControlName="deviceType">
+                  <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                    <div><span [ngOptionHighlight]="search">{{item.name}}</span></div>
+                  </ng-template>
+                </ng-select>
+                <small *ngIf="submitted && !settingsForm.get('settings').get('deviceType').valid" class="text-danger">
+                    Device Type can't be empty
+                </small>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="row">
+          <div class="col-md-3 mt-2">
+            <button type="button" class="btn btn-light btn-sm">Configuration</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Device Information:</h5>
+          <div>Processor : {{ settingsForm.value.settings.deviceInfo?.processor}} </div>
+          <div>IO : {{ settingsForm.value.settings.deviceInfo?.io }}</div>
+          <div>RAM : {{ settingsForm.value.settings.deviceInfo?.ram }} </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- summary -->
+    <h4 class="project_settings__title">Project summary</h4>
+    <div class="row m-o">
+      <div class="col-12">
+        <textarea autosize [minRows]="1" [maxRows]="10" name="summary" formControlName="summary" class="form-control project_settings__textarea" rows="1" id="comment"></textarea>
+        <small *ngIf="submitted && !settingsForm.controls.summary.valid" class="text-danger">
+          Summary can't be empty
+        </small>
+      </div>
+    </div>
+
+    <div class="col-md-7 mt-2">
+      <p>Item Manager Directory: Creators&nbsp;Studio/ProjectName</p>
+    </div>
+
+  </div>
+</form>

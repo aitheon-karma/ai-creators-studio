@@ -1,0 +1,246 @@
+<!-- <div class="sandbox-container">
+  <div class="header-overlap" *ngIf="!loading; else loadingView">
+
+    <button class="btn btn-primary btn-sandbox-menu" [contextMenu]="sandboxContextMenu" >...</button>
+
+  </div>
+
+</div> -->
+<ng-template #loadingView>
+
+</ng-template>
+
+<div class="sandbox-container">
+  <div class="helper-nav w-00">
+    <ul class="helper-nav__items">
+      <li class="helper-nav__item" >
+        <a href="javascript://" (click)="showNewProject()" class="helper-nav__link">New Project</a>
+      </li>
+      <li class="helper-nav__item" joyrideStep="admin">
+        <a href="javascript://" (click)="showLoadProject()"  class="helper-nav__link">Load Project</a>
+      </li>
+      <li class="helper-nav__item" joyrideStep="admin">
+        <a href="javascript://" (click)="openSettings($event)"  class="helper-nav__link">Settings</a>
+      </li>
+      <li class="helper-nav__item" joyrideStep="admin">
+        <a href="javascript://" (click)="openReleasesModal()"  class="helper-nav__link">Releases</a>
+      </li>
+      <li class="helper-nav__item" joyrideStep="admin">
+        <a href="javascript://" (click)="terminate()" class="helper-nav__link text-danger">Terminate</a>
+      </li>
+      <li class="helper-nav__item position-relative" joyrideStep="admin" (click)="toggleProjectToSelect()">
+        <a href="javascript://"
+           class="helper-nav__link d-flex align-items-center">
+          IO <span class="icon icon--chevron-down icon--size-16px mr--8"></span>
+        </a>
+        <div class="project-to-select-list" *ngIf="projectToSelect">
+          <ul class="project-to-select-list__list">
+            <li *ngFor="let project of projects" (click)="openIoModal(project)">
+              {{ project.name }}
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="helper-nav__item" joyrideStep="admin">
+        <a href="javascript://" (click)="openComponentInstaller()" class="helper-nav__link">Install Component</a>
+      </li>
+      <li class="helper-nav__item" joyrideStep="admin">
+        <a href="javascript://" (click)="quickDeploy()"  class="helper-nav__link">Quick Release</a>
+      </li>
+      <li class="helper-nav__item" joyrideStep="admin">
+        <a href="javascript://" (click)="openBuildStatus()"  class="helper-nav__link">Quick Release Status</a>
+      </li>
+    </ul>
+  </div>
+  <div class="outlet-container">
+    <div *ngIf="url">
+      <iframe allow="clipboard-read *; clipboard-write: *;" [src]="url | safe:'resourceUrl'" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+
+<ai-generic-confirm #genericConfirm ></ai-generic-confirm>
+
+<ng-template #openProjectModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Projects</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="onClose(openProjectModalRef)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body project-list">
+    <div class="p-0">
+      <div  class="search-container search-container--contained"
+            [class.search-container--filled]="projectsSearch.value.length">
+        <input  type="text"
+                #projectsSearch
+                autocomplete="off"
+                placeholder="Search"
+                [(ngModel)]="name"
+                (ngModelChange)='searchChange($event)'
+                class="search-container__input">
+        <div class="search-container__button icon icon--search icon--size-16px"></div>
+        <div  class="search-container__button icon icon--close icon--dynamic icon--size-16px"
+              (click)="clearSearch($event)"></div>
+      </div>
+    </div>
+    <div class="project-list__wrap mt-3">
+      <ul class="project-list__nav" *ngIf="projects && projects.length">
+        <li class="project-list__item"
+            *ngFor="let project of projectsAfterSearch"
+            (click)="loadProject(project._id)">
+          <div class="project-list__item_wrap">
+            <div class="project-list__item_left">
+              <div class="file-type-wrap">
+                <div class="file-img-wrap">
+                  <img class="project-img" src="assets/img/creator-project-file.svg" alt="File">
+                  <span class="file-type yellow text-capitalize">{{project.language | prettyEnum}}</span>
+                </div>
+              </div>
+              <div class="file-footer-wrap">
+                <h4>{{project.name}}</h4>
+                <span class="grey">Last edited {{project.updatedAt | editDate}}</span>
+              </div>
+            </div>
+            <div class="project-list__item_right grey">
+              {{project.projectType | prettyEnum}}
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="empty-projects-list" *ngIf="projectsAfterSearch && !projectsAfterSearch.length">
+        <span>No projects found</span>
+      </div>
+    </div>
+    <!-- <div class="creator_modal_footer">
+      <button id="back" class="button button--medium button--ghost" (click)="onCloseOpenProject(); $event.preventDefault()">Cancel</button>
+    </div> -->
+  </div>
+</ng-template>
+
+<ng-template #newProjectModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">New Project</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="onClose(projectsModalRef)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div>
+    <ai-project-form-root class="no-border" (onClose)="onClose(projectsModalRef, $event)" (onSaved)="onProjectSaved($event)" [workspaces]='workspaces' [getWorkspace]='getWorkspace'></ai-project-form-root>
+  </div>
+</ng-template>
+
+
+<ng-template #ioModal>
+  <div class="io-loader" *ngIf="ioLoading">
+    <h3>
+      Sockets generation is in progress...
+    </h3>
+    <ai-loading class="mt--16"></ai-loading>
+  </div>
+  <div class="modal-header justify-content-between align-items-center">
+    <h4 class="modal-title">{{ projectIoModal.name }}</h4>
+    <button type="button" class="icon icon--close icon--dynamic mt--8 mb--8" aria-label="Close" (click)="ioModalRef.hide()">
+    </button>
+  </div>
+  <div class="modal-body io-modal">
+    <div class="io-modal__groups">
+      <h4 class="io-modal__subtitle">
+        Socket Libraries
+      </h4>
+      <ul class="io-modal__groups__list">
+        <li class="group" *ngFor="let group of groups">
+          <div class="group__header" (click)="group.showSocketsListShow = !group.showSocketsListShow">
+            <span class="icon mr--8"
+                  [ngClass]="group.showSocketsListShow === true ? 'icon--arrow-drop-down' : 'icon--arrow-drop-right'"
+                  *ngIf="group?.sockets != 0">
+            </span>
+            <span class="mr--8"
+                  [ngStyle]="{'margin-left': group?.sockets != 0 ? '0' : '32px' }">
+              {{ group.name }}
+            </span>
+            <button class="ml-auto button button--small button--contained"
+                    style="min-width: 69px; justify-content: center"
+                    [ngClass]="group.added === false ? 'button--contained' : 'button--error'"
+                    (click)="selectGroup(group, $event); group.added = !group.added">
+              {{ group.added === false ? 'Add' : 'Remove' }}
+            </button>
+          </div>
+          <ul *ngIf="group.showSocketsListShow" class="group__list">
+            <li *ngFor="let socketItem of group.sockets[0]" class="group__list__socket" (click)="viewSocket(socketItem)">
+              {{ socketItem?.name }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="io-modal__sockets">
+      <div *ngIf="socketToView else noSocketToView">
+        <div class="io-modal__sockets__list">
+          <div class="socket-description">
+            <h4 class="io-modal__subtitle pl--0">
+              {{ socketToView?.name }}
+            </h4>
+            <span class="gray mb--16 d-inline-block" *ngIf="socketToView?.description">
+              {{ socketToView?.description }}
+            </span>
+            <h5 class="mb--8">
+              JSON Schema
+            </h5>
+            <div class="textarea-wrap textarea-wrap--outlined textarea-wrap--max-size">
+              <textarea class="textarea-wrap__textarea" disabled readonly>
+{{ socketToView?.structure | json }}
+              </textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noSocketToView>
+        <h4 class="gray m-0 p--24 text-center">
+          Select Socket to view
+        </h4>
+      </ng-template>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="button button--ghost mr--4 button--medium" (click)="closeIoModal()">Cancel</button>
+    <button class="button button--contained button--medium"
+            (click)="saveIoModal()">
+      Save
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #projectSettingsModal>
+  <div class="modal-header pl--24 pr--24">
+    <h4 class="modal-title pull-left">Settings</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="onClose(projectSettingsModalRef)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p--0 pt--16 pb--16">
+    <label class="gray font-size-12 pl--24">PROJECTS</label>
+    <ul class="list-group settings__nav">
+      <li class="list-group-item pl--24 pr--24"
+          *ngFor="let project of projectsAfterSearch"
+          (click)="chooseProject(project)"
+          [class.list-group-item--active]="project == activeProject">
+        {{ project.name }}
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button class="button button--medium button--ghost mr-2"
+          (click)="onClose(projectSettingsModalRef)">
+      cancel
+    </button>
+  </div>
+</ng-template>
+
+<ai-releases-list></ai-releases-list>
+<ai-store-request-modal></ai-store-request-modal>
+<ai-automation-quick-release #quickRelease></ai-automation-quick-release>
+<ai-automation-build-status #buildStatus></ai-automation-build-status>
+<ai-sandbox-component-installer #componentInstaller></ai-sandbox-component-installer>
+<ai-build-status></ai-build-status>
+<ai-build-logs></ai-build-logs>

@@ -1,0 +1,22 @@
+.textarea-wrap--contained {
+    border-radius: 2px;
+
+    textarea {
+        resize: none;
+    }
+
+    &:before {
+        display: none;
+    }
+}
+
+.section {
+    margin-bottom: 12px;
+}
+
+.ai-checkbox {
+
+    label {
+        cursor: pointer;
+    }
+}

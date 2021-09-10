@@ -1,0 +1,32 @@
+{
+  "name": "ai-creators-studio",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --aot",
+    "build:prod": "$(npm bin)/ng build --aot --prod --base-href /creators-studio/ && npm run docs",
+    "watch": "ng build --watch=true --aot",
+    "test": "ng test",
+    "lint": "ng lint ai-creators-studio --fix",
+    "e2e": "ng e2e",
+    "lib:watch": "$(npm bin)/ng build @aitheon/creators-studio --watch",
+    "lib:version": "cd projects/aitheon/creators-studio && npm version minor",
+    "lib:build": "$(npm bin)/ng build @aitheon/creators-studio",
+    "lib:publish": "npm run lib:build && npm publish dist/aitheon/creators-studio",
+    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./projects/",
+    "typedoc": "typedoc"
+  },
+  "private": true,
+  "dependencies": {
+    "@aitheon/core-client": "9.1.74",
+    "@aitheon/item-manager": "0.27.0",
+    "@aitheon/marketplace": "0.23.0",
+    "@aitheon/platform-support": "0.35.0",
+    "@aitheon/system-graph": "^0.144.0",
+    "@ng-select/ng-option-highlight": "^0.0.5",
+    "ngx-contextmenu": "^5.2.0",
+    "zone.js": "^0.10.3"
+  },
+  "devDependencies": {}
+}

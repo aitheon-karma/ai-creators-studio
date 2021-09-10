@@ -1,0 +1,42 @@
+<div class="project-wrap" (click)="onOpenProject()">
+  <div class="file-type-wrap">
+    <div class="file-img-wrap">
+      <img class="project-img" src="assets/img/creator-project-file.svg" alt="File">
+      <span class="file-type yellow text-capitalize">
+        {{ project.language | prettyEnum }}
+      </span>
+    </div>
+    <span class="project-type grey text-capitalize">
+      {{ project.projectType | prettyEnum }}
+    </span>
+    <span class="project-more-btn icon icon--more icon--dynamic icon--size-16px"
+          (click)="toggleMenu($event)">
+    </span>
+    <ul class="project-menu" *ngIf="project.isMenuOpen">
+      <li class="project-menu-item" (click)="onViewRepo($event)">
+        View Repository
+      </li>
+      <li class="project-menu-item" *ngIf="!project?.archived" (click)="onPublish($event)">
+        Publish Request
+      </li>
+      <li class="project-menu-item"
+          (click)="onArchiveEvent($event)"
+          *ngIf="project.archived">
+        Unarchive Project
+      </li>
+      <li class="project-menu-item"
+          *ngIf="!project.archived || project.archived === false"
+          (click)="onDelete($event)">
+        Archive Project
+      </li>
+    </ul>
+  </div>
+  <div class="file-footer-wrap">
+    <h4>
+      {{ project.name }}
+    </h4>
+    <span class="grey">
+      Last edited {{ project.updatedAt | editDate }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 4</title>
+    <defs>
+        <path d="M22.6666667,17.3333333 C25.6121853,17.3333333 28,19.721148 28,22.6666667 C28,25.6121853 25.6121853,28 22.6666667,28 C19.721148,28 17.3333333,25.6121853 17.3333333,22.6666667 C17.3333333,19.721148 19.721148,17.3333333 22.6666667,17.3333333 Z M14.6666667,17.3333333 L14.6666667,28 L4,28 L4,17.3333333 L14.6666667,17.3333333 Z M15.3333333,4 L21.3333333,14.6666667 L9.33333333,14.6666667 L15.3333333,4 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-4">
+            <rect id="Rectangle" x="0" y="0" width="32" height="32"></rect>
+            <g id="icon-/-24-cont-/-info-/-shapes-24">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#7E7E7E" fill-rule="nonzero" transform="translate(16.000000, 16.000000) scale(-1, 1) translate(-16.000000, -16.000000) " xlink:href="#path-1"></use>
+                <g id="Group" mask="url(#mask-2)" fill="#7E7E7E">
+                    <g id="Colors-/-Dark-Theme-/-Grayscale-/-Filled-/-$base-gray">
+                        <rect id="Dark-Theme-/-Grayscale-/-Filled-/-$base-gray" x="0" y="0" width="32" height="32"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

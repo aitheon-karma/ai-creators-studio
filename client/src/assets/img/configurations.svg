@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="14px" viewBox="0 0 13 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>configurations</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CreatorStudio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="13-CreatorStudio-/-02-Workspace-/-02_01_EditorPage" transform="translate(-218.000000, -88.000000)">
+            <g id="Group-5" transform="translate(0.000000, 80.000000)">
+                <g id="configurations" transform="translate(215.000000, 5.000000)">
+                    <rect id="Rectangle-Copy-9" x="0" y="0" width="20" height="20"></rect>
+                    <g id="Group-39" transform="translate(3.000000, 3.000000)">
+                        <path d="M2,8.5 L1,8.5 L1.5,9 L1.5,0 L1,0.5 L2,0.5 L1.5,0 L1.5,9 L2,8.5 Z M1.5,13 L1.5,14 L2,13.5 L1,13.5 L1.5,14 L1.5,13 L1,13.5 L2,13.5 L1.5,13 Z" id="Combined-Shape" stroke="#979797" fill="#7E7E7E"></path>
+                        <rect id="Rectangle" fill="#DCBC65" x="0" y="10" width="3" height="2"></rect>
+                    </g>
+                    <g id="Group-37" transform="translate(8.000000, 3.000000)">
+                        <path d="M2,0.5 L1,0.5 L1.5,1 L1.5,0 L1,0.5 L2,0.5 L1.5,0 L1.5,1 L2,0.5 Z M1.5,5 L1.5,14 L2,13.5 L1,13.5 L1.5,14 L1.5,5 L1,5.5 L2,5.5 L1.5,5 Z" id="Combined-Shape" stroke="#979797" fill="#7E7E7E"></path>
+                        <rect id="Rectangle-Copy-8" fill="#DCBC65" x="0" y="2" width="3" height="2"></rect>
+                    </g>
+                    <g id="Group-38" transform="translate(13.000000, 3.000000)">
+                        <path d="M2,4.5 L1,4.5 L1.5,5 L1.5,0 L1,0.5 L2,0.5 L1.5,0 L1.5,5 L2,4.5 Z M1.5,9 L1.5,14 L2,13.5 L1,13.5 L1.5,14 L1.5,9 L1,9.5 L2,9.5 L1.5,9 Z" id="Combined-Shape" stroke="#979797" fill="#7E7E7E"></path>
+                        <rect id="Rectangle-Copy-23" fill="#DCBC65" x="0" y="6" width="3" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,69 @@
+<div class="open-project-wrap">
+  <div class="project-current">
+    <div class="file-type-wrap">
+      <div class="file-img-wrap">
+          <img  class="project-img" 
+                src="assets/img/creator-project-file.svg" 
+                alt="File">
+          <span class="file-type yellow text-capitalize">{{currentProject?.language | prettyEnum}}</span>
+      </div>
+      <span class="project-type grey text-capitalize">{{currentProject?.projectType | prettyEnum}}</span>
+      <span class="project-name">{{currentProject?.name}}</span>
+    </div>
+  </div>
+  <div class="workspace-select-wrap">
+    <div class="workspace">
+      <div class="workspace__wrap">
+        <label class="grey">Open in sandbox (Coming soon)</label>
+        <!-- <div  class="workspace__name" 
+              (click)="toggleWorkspaceSelect($event)"
+              [class.workspace__name--active]="workspaceSelectOpened">
+          {{projectWorkspace.name}}
+          <i  class="fa project-expand-icon"
+              [class.opened]="workspaceSelectOpened" 
+              [class.fa-caret-up]="workspaceSelectOpened"
+              [class.fa-caret-down]="!workspaceSelectOpened"></i>
+        </div>
+        <div  class="workspace__select"
+              [class.opened]='workspaceSelectOpened'>
+          <div  class="workspace__add yellow" 
+                *ngIf="!addingNewWorkspace" 
+                (click)="toggleNewWorkspace($event)">
+            <span>+</span> New workspace
+          </div>
+          <div  class="py-2 px-3" 
+                *ngIf="addingNewWorkspace">
+            <div class="workspace__add yellow input-wrap input-wrap--contained input-wrap--small">
+              <input  class="input-wrap__input" 
+                      type="text" 
+                      [(ngModel)]='projectWorkspace.name'
+                      *ngIf="addingNewWorkspace" 
+                      name="workspaceName">
+              <span class="add-new yellow" 
+                    (click)="addNewWorkspace()"
+                    (enter.keydown)="addNewWorkspace()">+</span>
+            </div>
+          </div>
+          <div class="workspace__list">
+            <h4 class="grey">Recent workspaces</h4>
+            <ul class="workspace__list-recent">
+              <li *ngFor="let recent of recentWorkspaces"
+                  (click)="addWorkspace(recent)" 
+                  [class.selected]='recent._id===projectWorkspace._id'>
+                {{recent.name}}
+              </li>
+            </ul>
+            <h4 class="grey">All workspaces</h4>
+            <ul class="workspace__list-recent">
+              <li *ngFor="let workspace of workspaces" 
+                  (click)="addWorkspace(workspace)" 
+                  [class.selected]='workspace._id===projectWorkspace._id'>
+                {{workspace.name}}
+              </li>
+            </ul>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

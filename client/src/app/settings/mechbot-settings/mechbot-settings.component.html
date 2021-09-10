@@ -1,0 +1,89 @@
+<form [formGroup]="settingsForm">
+  <div>
+    <div formGroupName="settings" class="row mt-2">
+
+      <div class="col-md-7">
+
+        <div class="row">
+          <div class="col-12">
+            <label class="grey">MechBot Type</label>
+            <div class="form-group mb-0">
+              <ng-select [items]="robotTypes" [selectOnTab]="true" bindLabel="name" bindValue="id" [clearable]='false'
+                placeholder="Select MechBot type" formControlName="robotType">
+                <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                  <div><span [ngOptionHighlight]="search">{{item.name}}</span></div>
+                </ng-template>
+              </ng-select>
+              <small *ngIf="submitted && !settingsForm.get('settings').get('robotType').valid" class="text-danger">
+                Select MechBot type
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 mb-2">
+          <div class="col-12">
+            <button type="button" class="btn btn-light btn-sm">Configuration</button>
+          </div>
+        </div>
+
+        <div class="ai-checkbox">
+          <input name="enableAppFrontEnd" formControlName="enableAppFrontEnd" type="checkbox"
+            id="enableAppFrontEnd">
+          <label class="" for="enableAppFrontEnd">Enable App Frontend</label>
+        </div>
+
+        <div class="ai-checkbox">
+          <input name="hideUserHeader" formControlName="hideUserHeader" type="checkbox"
+            id="hideUserHeader">
+          <label class="" for="hideUserHeader">Hide Aitheon User Header (Kiosk mode)</label>
+        </div>
+
+        <div class="ai-checkbox">
+          <input name="userLoginRequired" formControlName="userLoginRequired" type="checkbox"
+            id="userLoginRequired">
+          <label class="" for="userLoginRequired">Aitheon User Login Required</label>
+        </div>
+
+        <div>
+          <label class="grey">Login Screen Type</label>
+          <div class="form-group mb-0">
+            <ng-select [items]="screenTypes" [selectOnTab]="true" bindLabel="name" bindValue="id" [clearable]='false'
+              placeholder="Select screen type" formControlName="loginScreenType">
+              <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                <div><span [ngOptionHighlight]="search">{{item.name}}</span></div>
+              </ng-template>
+            </ng-select>
+            <small *ngIf="submitted && !settingsForm.get('settings').get('loginScreenType').valid" class="text-danger">
+              Select screen type
+            </small>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-5">
+        <h5><ins>MechBot Information:</ins></h5>
+        <div>Processor : {{ settingsForm.value.settings.mechBotInfo?.processor}} </div>
+        <div>IO : {{ settingsForm.value.settings.mechBotInfo?.io }}</div>
+        <div>RAM : {{ settingsForm.value.settings.mechBotInfo?.ram }} </div>
+      </div>
+
+    </div>
+
+    <!-- summary -->
+    <h4 class="project_settings__title">Project summary</h4>
+    <div class="row m-o">
+      <div class="col-12">
+        <textarea autosize [minRows]="1" [maxRows]="10" name="summary" formControlName="summary" class="form-control project_settings__textarea" rows="1" id="comment"></textarea>
+        <small *ngIf="submitted && !settingsForm.controls.summary.valid" class="text-danger">
+          Summary can't be empty
+        </small>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <p>Item Manager Directory: Creators Studio/ProjectName</p>
+    </div>
+
+  </div>
+</form>

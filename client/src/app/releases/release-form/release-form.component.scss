@@ -1,0 +1,31 @@
+label {
+	font-size: 14px;
+}
+
+.release-form {
+
+	&__section {
+		margin-bottom: 24px;
+		
+		&--big {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			flex-wrap: nowrap;
+		}
+
+		&--tag {
+			width: 133px;
+			margin-right: 16px;
+		}
+
+		&--name {
+			width: 100%;
+		}
+	}
+}
+
+.modal-footer {
+	margin-right: -24px;
+	margin-left: -24px;
+}

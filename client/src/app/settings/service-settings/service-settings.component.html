@@ -1,0 +1,62 @@
+<form [formGroup]="settingsForm">
+    <div>
+      <div formGroupName="settings" class="row mt-2">
+
+        <div class="col-12">
+          <div class="ai-checkbox">
+            <input name="hideUserHeader" formControlName="hideUserHeader" type="checkbox"
+              id="hideUserHeader">
+            <label class="" for="hideUserHeader">Hide Aitheon User Header (Kiosk mode)</label>
+          </div>
+
+          <div>
+            <div class="ai-checkbox">
+              <input name="userLoginRequired" formControlName="userLoginRequired" type="checkbox"
+                id="userLoginRequired">
+              <label class="" for="userLoginRequired">Aitheon User Login Required</label>
+            </div>
+
+            <div class="section">
+              <label class="grey mt-3">Login Screen Type</label>
+              <ng-select  class="dropdown dropdown--contained"
+                          [items]="screenTypes" 
+                          [selectOnTab]="true" 
+                          bindLabel="name" 
+                          bindValue="id" 
+                          [clearable]="false"
+                          [searchable]="false"
+                          placeholder="Select screen type" 
+                          formControlName="loginScreenType">
+                <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                  <div><span [ngOptionHighlight]="search">{{item.name}}</span></div>
+                </ng-template>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- summary -->
+      <div class="section">
+        <label  class="grey"
+                [hidden]="submitted && settingsForm.controls.summary.invalid">Project summary</label>
+        <label  *ngIf="submitted && settingsForm.controls.summary.invalid" 
+                class="text-danger">
+          Project summary is required
+        </label>
+        <div class="row m-0">
+          <div  class="textarea-wrap textarea-wrap--contained"
+                [class.textarea-wrap--error]="submitted && settingsForm.controls.summary.invalid">
+            <textarea autosize 
+                      [minRows]="4" 
+                      [maxRows]="10" 
+                      name="summary" 
+                      formControlName="summary" 
+                      class="textarea-wrap__textarea" 
+                      rows="4" 
+                      id="comment"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>

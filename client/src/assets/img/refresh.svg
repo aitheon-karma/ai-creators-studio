@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="12px" viewBox="0 0 13 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>refresh</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CreatorStudio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="13-CreatorStudio-/-02-Workspace-/-02_01_EditorPage" transform="translate(-233.000000, -119.000000)">
+            <g id="refresh" transform="translate(229.000000, 115.000000)">
+                <polygon id="Path" points="0 0 20 0 20 20 0 20"></polygon>
+                <path d="M14.2413977,5.7625 C13.1532176,4.675 11.6597842,4 10.0012477,4 C6.68417448,4 4.005,6.685 4.005,10 C4.005,13.315 6.68417448,16 10.0012477,16 C12.8004972,16 15.1344559,14.0875 15.8023734,11.5 L14.2413977,11.5 C13.6260131,13.2475 11.9599719,14.5 10.0012477,14.5 C7.51719512,14.5 5.4984334,12.4825 5.4984334,10 C5.4984334,7.5175 7.51719512,5.5 10.0012477,5.5 C11.2470263,5.5 12.3577205,6.0175 13.168227,6.835 L10.7517167,9.25 L16.005,9.25 L16.005,4 L14.2413977,5.7625 Z" id="Path" fill="#828383" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,127 @@
+
+button {
+}
+.btn {
+    box-shadow: none;
+}
+h2 {
+    text-decoration: underline;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+input {
+    margin-left: 10px;
+    border-radius: 0;
+    border: 2px solid #000;
+}
+i {
+    color: #000;
+    text-align: center;
+    font-size: 60px;
+}
+.radio-btn {
+    color: #000;
+    font-size: 4px;
+    vertical-align: middle;
+    margin-right: 10px;
+    border-color: #000;
+}
+.workspace label {
+    color: #000;
+    font-size: 14px;
+}
+.workspace .inputfield {
+    width: 200px;
+}
+.workspace span {
+    font-weight: bold;
+    padding: 0 10px;
+}
+.workspace button {
+    background-color: transparent;
+    display: inline-block;
+    color: #000;
+    text-transform: none;
+    font-size: 14px;
+    color: #000;
+    text-decoration: underline;
+    padding: 0;
+}
+.project-name h2 {
+    display: inline-block;
+}
+.project-name input {
+    display: inline-block;
+    width: 225px;
+}
+.projectType {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    position: relative;
+    left: 14px;
+    margin-right: 14px;
+    flex-direction: column;
+}
+.inputfield{
+    border-radius: 5px;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    width: 150px;
+    font-size: 20px;
+}
+.projectType .btn-group {
+    margin-top: 25px;
+    margin-bottom: 100px;
+    border-bottom: 2px solid #000;
+}
+.projectType .btn {
+    padding-right: 30px;
+    padding-left: 0;
+}
+.projectType input {
+    margin: 0;
+}
+.checkform {
+    position: relative !important;
+}
+.projName {
+    color: #000;
+    text-transform: none;
+    font-size: 14px;
+    margin-top: 3px;
+}
+.cancel_btn {
+    float: left;
+}
+.next_btn {
+    float: right;
+}
+.finish_btn {
+    float: right;
+}
+.card {
+    border: none;
+    box-shadow: none;
+}
+
+.form-wrap {
+    display: flex;
+    height: 584px;
+}
+
+.form-settings-wrap {
+    width: 100%;
+
+    &--empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-top: -24px;
+        color: #7e7e7e;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+    }
+}

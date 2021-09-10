@@ -1,0 +1,5 @@
+export enum ProjectSubType {
+  APPLICATION = 'APPLICATION',
+  DASHBOARD = 'DASHBOARD',
+  AUTOMATION = 'AUTOMATION'
+}

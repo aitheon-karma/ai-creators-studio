@@ -1,0 +1,19 @@
+<ng-template #formModal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{ data.headlineText || 'Confirm' }} </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="data && data.text" class="modal-body">
+        <div>
+          {{ data?.text }}
+        </div>
+      </div>
+      <div class="creator_modal_footer">
+        <button *ngIf="showCancel" [class.d-none]="data.hideNoButton" class="btn btn-link ml-auto mr-3" (click)="cancel()">{{ data.cancelText || 'No'}}</button>
+        <button class="btn btn-primary btn-medium" (click)="onConfirm()" type="button">{{ data.confirmText || 'Confirm'}}</button>
+      </div>
+    </div>
+</ng-template>

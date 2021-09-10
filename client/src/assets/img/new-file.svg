@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>new-file</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CreatorStudio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="13-CreatorStudio-/-02-Workspace-/-02_01_EditorPage" transform="translate(-247.000000, -89.000000)">
+            <g id="Group-5" transform="translate(0.000000, 80.000000)">
+                <g id="new-file" transform="translate(245.000000, 5.000000)">
+                    <rect id="Rectangle-Copy-9" x="0" y="0" width="20" height="20"></rect>
+                    <path d="M17,16 L20,16 L20,17 L17,17 L17,20 L16,20 L16,17 L13,17 L13,16 L16,16 L16,13 L17,13 L17,16 Z" id="Combined-Shape" fill="#DCBC65"></path>
+                    <rect id="Rectangle" stroke="#979797" fill="#7E7E7E" x="2.5" y="4.5" width="11" height="1"></rect>
+                    <rect id="Rectangle-Copy-19" stroke="#979797" fill="#7E7E7E" x="2.5" y="7.5" width="5" height="1"></rect>
+                    <rect id="Rectangle-Copy-20" stroke="#979797" fill="#7E7E7E" x="2.5" y="10.5" width="10" height="1"></rect>
+                    <rect id="Rectangle-Copy-22" stroke="#979797" fill="#7E7E7E" x="2.5" y="13.5" width="8" height="1"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

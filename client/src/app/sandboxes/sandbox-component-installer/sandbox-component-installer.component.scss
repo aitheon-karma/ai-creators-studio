@@ -1,0 +1,49 @@
+.modal-header--component-manager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.no-results-text {
+  margin: 24px auto;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    color: rgb(126, 126, 126);
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.2px;
+    line-height: 20px;
+  }
+
+  &--no-components {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+}
+
+.form-group--inline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+
+  label+div { width: 100% }
+
+  label {
+    margin: 0 24px 0 0 !important;
+    white-space: nowrap;
+  }
+}
+
+.components-list {
+  display: flex;
+  flex-direction: column;
+  min-height: 40vh;
+  max-height: 40vh;
+  padding-top: 4px;
+  overflow-y: auto;
+}

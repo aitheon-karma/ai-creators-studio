@@ -1,0 +1,23 @@
+<div class="row" *ngFor="let dep of dependencies">
+  <div class="col-12">
+    <div class="col-9">
+      {{ dep.project.name }}
+    </div>
+    <div class="col-3">
+      <button class="btn-sm btn-link text-danger" (click)="remove(dep)">Remove</button>
+    </div>
+  </div>
+</div>
+<div class="row m-o">
+  <div class="col-9">
+    <ng-select [items]="projects" [virtualScroll]="true" [clearable]="true" bindLabel="name" [(ngModel)]="dependency"
+      placeholder="Select project">
+      <ng-template ng-option-tmp let-item="item">
+        <span class="ng-option-label">{{ item.name }}</span>
+      </ng-template>
+    </ng-select>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-success btn-sm btn-block" type="button" (click)="add()">Add</button>
+  </div>
+</div>

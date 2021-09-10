@@ -1,0 +1,71 @@
+<div class="project-settings">
+  <form class="mb-3" novalidate [formGroup]="projectSettingsForm">
+    <div class="project-form-wrap">
+      <div class="back-button-wrap yellow" (click)="back()">
+        <span><img src="assets/img/arrow-back.svg" alt="back"></span>
+        <span class="back">Back</span>
+      </div>
+      <!-- <div class="w-100 inter-wrap">
+        <div class="title-wrap">
+          <h4 class="grey">Aitheon interfaces</h4>
+          <div class="button-inter-wrap" (click)="openNewAiControl()" *ngIf="availableAiInterfaces.length">
+            <span class="yellow addplus">+</span>
+            <span class="yellow"> ADD</span>
+          </div>
+          <div class="interface-list" [ngClass]="{'opened': isSelectAiOpened}">
+            <ul class="interface-list__nav">
+              <li *ngFor="let interface of availableAiInterfaces" (click)="addNewAiControls(interface)">
+                {{interface.name}}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <label [for]="aiInterfaces[i].value" class="switch-container" formArrayName="aiInterfaces" *ngFor="let ai of formAiData.controls; let i = index">
+          <label [for]="aiInterfaces[i].value">{{aiInterfaces[i].name}}</label>
+          <label class="switch">
+            <input [id]="aiInterfaces[i].value" [formControl]='ai' [name]="aiInterfaces[i].value" type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </label>
+
+      </div>
+      <div class="w-100 inter-wrap">
+        <div class="title-wrap">
+          <h4 class="grey">External interfaces</h4>
+          <div class="button-inter-wrap" (click)="openNewExControl()" *ngIf="availableExInterfaces.length">
+            <span class="yellow addplus">+</span>
+            <span class="yellow"> ADD</span>
+          </div>
+          <div class="interface-list" [ngClass]="{'opened': isSelectExOpened}">
+            <ul class="interface-list__nav">
+              <li *ngFor="let interface of availableExInterfaces" (click)="addNewExControls(interface)">
+                {{interface.name}}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <label [for]="exInterfaces[i].value" class="switch-container" formArrayName="exInterfaces" *ngFor="let ex of formExData.controls; let i = index">
+          <label [for]="exInterfaces[i].value">{{exInterfaces[i].name}}</label>
+          <label class="switch">
+            <input [id]="exInterfaces[i].value" [formControl]='ex' [name]="exInterfaces[i].value" type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </label>
+
+      </div> -->
+      <div>
+        <label class="grey">Project summary</label>
+        <div class="textarea-wrap textarea-wrap--contained">
+          <textarea class="textarea-wrap__textarea" type="text" rows="10"
+                    placeholder="Input project summary ..."
+                    formControlName="summary"></textarea>
+        </div>
+        <small *ngIf="submitted && projectSettingsForm.get('summary').hasError('required')" class="text-danger">
+          Summary is required.
+        </small>
+      </div>
+    </div>
+  </form>
+</div>

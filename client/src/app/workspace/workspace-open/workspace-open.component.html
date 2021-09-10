@@ -1,0 +1,23 @@
+<form [formGroup]="workspaceForm" (ngSubmit)="onSubmit()">
+  <label [hidden]="submitted && workspaceForm.get('newWorkspaceName').hasError('required')">
+    Name of workspace
+  </label>
+  <label  *ngIf="submitted && workspaceForm.get('newWorkspaceName').hasError('required')"
+          class="text-danger">
+    New Workspace Name Is Required!
+  </label>
+  <div  class="input-wrap input-wrap--contained input-wrap--small"
+        [class.input-wrap--error]="submitted && workspaceForm.get('newWorkspaceName').hasError('required')">
+    <input  id="workspaceName" 
+            type="text" 
+            formControlName="newWorkspaceName" 
+            name="workspaceName" 
+            [value]='newWorkspaceName'
+            class="input-wrap__input">
+  </div>
+  <div class="creator_modal_footer">
+    <button id="back" class="button button--medium button--ghost mr-2" (click)="onCancel(); $event.preventDefault()">Cancel</button>
+    <ai-loading class="xs inline tab-loading" *ngIf="loading"></ai-loading>
+    <button id="create" *ngIf="!loading" class="button button--medium button--contained" value="1" type="submit" >Create</button>
+  </div>
+</form>

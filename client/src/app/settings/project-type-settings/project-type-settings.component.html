@@ -1,0 +1,36 @@
+<form (ngSubmit)="submitForm()" class="project_type_settings">
+  <tabset #tabs class="project_settings">
+    <tab class="project_settings__tab" heading="Project settings" id="general_settings">
+      <div class="pt-2" [ngSwitch]="project.projectType" >
+        <ai-app-settings #settingsView *ngSwitchCase="projectType.APP" [(currentProject)]="project" [submitted]="submitted"></ai-app-settings>
+        <ai-app-settings #settingsView *ngSwitchCase="projectType.INTERFACE" [(currentProject)]="project" [submitted]="submitted"></ai-app-settings>
+        <ai-app-settings #settingsView *ngSwitchCase="projectType.LIBRARY" [(currentProject)]="project" [submitted]="submitted"></ai-app-settings>
+        <ai-service-settings #settingsView *ngSwitchCase="projectType.SERVICE" [(currentProject)]="project" [submitted]="submitted"></ai-service-settings>
+        <ai-mechbot-settings #settingsView *ngSwitchCase="projectType.ROBOT" [(currentProject)]="project" [submitted]="submitted"></ai-mechbot-settings>
+        <ai-digibot-settings #settingsView *ngSwitchCase="projectType.DIGIBOT" [(currentProject)]="project" [submitted]="submitted"></ai-digibot-settings>
+        <ai-mechbot-node-settings #settingsView *ngSwitchCase="projectType.COMPUTE_NODE" [(currentProject)]="project" [submitted]="submitted"></ai-mechbot-node-settings>
+      </div>
+    </tab>
+    <tab class="project_settings__tab" heading="App store settings" id="app_store_settings">
+      <div class="pt-3">
+        <!-- <ai-app-store-settings #appStoreView [(appStoreSettings)]="project.appStoreSettings" [submitted]="submitted"></ai-app-store-settings> -->
+<!--        <ai-app-store-settings #appStoreView [submitted]="submitted"></ai-app-store-settings>-->
+      </div>
+    </tab>
+    <tab class="project_settings__tab" *ngIf="project.projectType === projectType.ROBOT" heading="Dependencies" id="dependencies">
+      <div class="pt-3">
+        <ai-dependencies-settings [(dependencies)]="project.dependencies" [submitted]="submitted"></ai-dependencies-settings>
+      </div>
+    </tab>
+    <tab class="project_settings__tab" *ngIf="project.projectType === projectType.COMPUTE_NODE" heading="Node Structure" id="nodeStructure">
+      <div class="pt-3">
+        <ai-node-structure [(currentProject)]="project" [submitted]="submitted"></ai-node-structure>
+      </div>
+    </tab>
+  </tabset>
+  <div class="creator_modal_footer">
+    <button type="submit" class="button button--contained button--medium">
+      Submit
+    </button>
+  </div>
+</form>

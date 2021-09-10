@@ -1,0 +1,82 @@
+.quick-release {
+  max-height: 400px;
+  overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent !important;
+    }
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      background-color: transparent !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #454545;
+    }
+
+  &__nav {
+    position: relative;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    max-height: 400px;
+    list-style: none;
+    margin: 0;
+
+    .icon--delete {
+      position: absolute;
+      top: 7px;
+      right: 5px;
+    }
+
+    li {
+      padding: 8px 24px 8px 18px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: .15s ease-in-out;
+      width: 218px !important;
+
+      &:hover {
+        border-radius: 2px;
+        border: 1px solid #dcbc65;
+        transition: .15s ease-in-out;
+      }
+    }
+  }
+
+  &__selected {
+    position: absolute;
+    top: 4%;
+    right: -5%;
+  }
+
+  &__error {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 1rem;
+  }
+}
+.project-wrap {
+  position: relative;
+}
+
+.checkbox__input:checked {
+  background-color: #dcbc65;
+  border: 1px solid #dcbc65;
+}
+.modal-body {
+  padding-bottom: 0 !important;
+}
+
+.project-wrap {
+  margin: 0 !important;
+}
+
+.modal-body {
+  padding: 24px !important;
+}

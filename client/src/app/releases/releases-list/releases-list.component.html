@@ -1,0 +1,133 @@
+<ng-template #releaseListModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Releases</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-0">
+    <div class="releases">
+      <div class="releases__projects-list-section">
+        <div class="releases__projects-title">Projects</div>
+        <div class="releases__projects-list" *ngIf="!loading">
+          <div  class="releases__project-item" *ngFor="let project of projects" 
+                [class.releases__project-item--active]="project?._id === currentProject?._id"
+                (click)="openProject(project)">
+            <div class="releases__project-name">
+              {{ project.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="releases__container" *ngIf="currentProject">
+        <div class="releases__submenu">
+          <div  class="releases__submenu-item pl-0" (click)="changeActiveTab('RELEASES')"
+                [class.releases__submenu-item--active]="activeTab === 'RELEASES'">
+            Releases
+          </div>
+          <div  class="releases__submenu-item pl-0" (click)="changeActiveTab('BUILDS')"
+                [class.releases__submenu-item--active]="activeTab === 'BUILDS'">
+            Builds
+          </div>
+          <button class="releases__create-build-button button button--contained button--medium"
+                  (click)="createBuild()" *ngIf="activeTab === 'BUILDS'">
+            Create build
+          </button>
+        </div>
+        <div class="releases__content-section" *ngIf="activeTab === 'RELEASES'">
+          <div class="releases__table releases-table">
+            <div class="releases-table__head">
+              <div class="releases-table__head--name">Name</div>
+              <div class="releases-table__head--tag">Tag</div>
+              <div class="releases-table__head--visibility">Visibility</div>
+              <div class="releases-table__head--node-template-status">Node Template Status</div>
+              <div class="releases-table__head--created-at">Created at</div>
+            </div>
+            <div class="releases-table__content">
+              <div class="releases-table__item" *ngFor="let release of releases">
+                <div class="releases-table__item--name"
+                    [tooltip]="release.name" placement="auto" container="body">
+                  {{ release.name }}
+                </div>
+                <div class="releases-table__item--tag">{{ release.tag }}</div>
+                <div class="releases-table__item--visibility">{{ release.visibility | titlecase }}</div>
+                <div class="releases-table__item--node-template-status">{{ release.nodeTemplateStatus | titlecase }}</div>
+                <div class="releases-table__item--created-at">{{ release.createdAt | momentFormat:'MM/DD/YYYY H:MM A' }}</div>
+                <div class="releases-table__item--edit">
+                  <button class="icon icon--edit icon--dynamic"
+                          (click)="onEditRelease(release)">
+                  </button>
+                </div>
+              </div>
+              <div class="releases-table__empty" *ngIf="!releases.length || releasesLoading">
+                <span *ngIf="!releases.length && !releasesLoading">
+                  No releases yet
+                </span>
+                <span *ngIf="releasesLoading">
+                  <ai-loading></ai-loading>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="releases__content-section" *ngIf="activeTab === 'BUILDS'">
+          <div class="releases__table builds-table">
+            <div class="builds-table__head">
+              <div class="builds-table__head--commit">Commit</div>
+              <div class="builds-table__head--status">Status</div>
+              <div class="builds-table__head--start">Start</div>
+              <div class="builds-table__head--end">End</div>
+            </div>
+            <div class="builds-table__content">
+              <div class="builds-table__item" *ngFor="let build of builds">
+                <div class="builds-table__item--commit">
+                  <a [href]="build.commitUrl" target="_blank">
+                    {{ build.shortSha }}
+                  </a>
+                </div>
+                <div class="builds-table__item--status }}">
+                  <span class="status status-{{ build.status.toLowerCase() }}">
+                    {{ build.status.replace('_', ' ') | titlecase }}
+                  </span>
+                </div>
+                <div class="builds-table__item--start">{{ build.startDate | momentFormat:'MM/DD/YYYY H:MM A' }}</div>
+                <div class="builds-table__item--end">{{ build.endDate | momentFormat:'MM/DD/YYYY H:MM A' }}</div>
+                <div class="builds-table__item--create-release">
+                  <button class="button button--ghost button--small"
+                          *ngIf="build.status === 'SUCCESS'"
+                          (click)="createRelease(build)">
+                    Create Release
+                  </button>
+                  <button class="button button--ghost button--small"
+                          *ngIf="build.status !== 'SUCCESS'"
+                          (click)="openBuildLogsModal(build)">
+                    Show logs
+                  </button>
+                </div>
+              </div>
+              <div class="builds-table__empty" *ngIf="!builds.length || buildsLoading">
+                <span *ngIf="!builds.length && !buildsLoading">
+                  No builds yet
+                </span>
+                <span *ngIf="buildsLoading">
+                  <ai-loading></ai-loading>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="releases__container--empty" *ngIf="!currentProject"> 
+        Choose project to see data
+      </div>
+    </div>
+  </div>
+</ng-template> 
+
+<div class="loading-container"
+			*ngIf="loading">
+  <ai-loading></ai-loading>
+</div> 
+
+<ai-release-form #releaseForm (saved)="onReleaseSaved($event)"></ai-release-form>

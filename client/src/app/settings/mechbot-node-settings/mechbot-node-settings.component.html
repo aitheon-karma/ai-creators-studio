@@ -1,0 +1,14 @@
+<form [formGroup]="settingsForm">
+  <div>
+    <h4 class="project_settings__title">Project summary</h4>
+
+    <div class="row m-o">
+      <div class="col-12">
+        <textarea autosize [minRows]="1" [maxRows]="10" name="summary" formControlName="summary" class="form-control project_settings__textarea" rows="1" id="comment"></textarea>
+        <small *ngIf="submitted && !settingsForm.controls.summary.valid" class="text-danger">
+          Summary can't be empty
+        </small>
+      </div>
+    </div>
+  </div>
+</form>

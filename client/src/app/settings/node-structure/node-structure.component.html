@@ -1,0 +1,17 @@
+<form [formGroup]="settingsForm">
+  <div>
+    <div class="row m-o">
+      <div class="col-12">
+        <div class="textarea-wrap textarea-wrap--contained">
+          <textarea rows="10" name="summary" formControlName="nodeStructure" class="textarea-wrap__textarea " placeholder="Enter JSON of node structure" id="nodeStructure"></textarea>
+        </div>
+        <small *ngIf="submitted && settingsForm.get('nodeStructure').hasError('required')" class="text-danger">
+          Node structure is required
+        </small>
+        <small *ngIf="submitted && settingsForm.get('nodeStructure').hasError('validJsonString')" class="text-danger">
+          Node structure needs to be JSON format
+        </small>
+      </div>
+    </div>
+  </div>
+</form>

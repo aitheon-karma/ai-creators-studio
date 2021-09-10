@@ -1,0 +1,44 @@
+<div class="sandboxtype" [class.mt--64]="!isModalView">
+  <form novalidate *ngIf="!loading; else loadingView" [formGroup]="sandboxTypeForm" (ngSubmit)="onSubmit()" class="jumbotron sandboxtype__container">
+      <span class="square-top-left"></span>
+      <span class="square-top-right"></span>
+      <span class="square-bottom-left"></span>
+      <span class="square-bottom-right"></span>
+    <span class="sandboxtype__step d-block"></span>
+    <h3 class="sandboxtype__title">Choose your sandbox type</h3>
+    <div formArrayName="sandboxTypes" class="row sandboxtype__row" *ngIf="sandboxTypes">
+      <div *ngFor="let typeControl of sandboxTypesFormArray.controls" (click) ="selectSandboxType(typeControl, $event)" class="sandboxtype__col">
+        <div  [formGroup]="typeControl"
+              class="sandboxtype__sandboxtype-container"
+              [class.sandboxtype__sandboxtype-container--disabled]="typeControl.value.sandboxType.disabled"
+              [class.sandboxtype__sandboxtype-container--selected] = "typeControl.value.checked" >
+          <div class="sandboxtype__disabled-background" *ngIf="typeControl.value.sandboxType.disabled"></div>
+          <div class="sandboxtype__left">
+            <img [src]="typeControl.value.sandboxType.image" class="sandboxtype__icon">
+            <span class="d-block mt-2 text-center sandboxtype__name">{{ typeControl.value.sandboxType.displayText }}</span>
+          </div>
+          <div class="sandboxtype__right">
+            <p class="sandboxtype__description">{{ typeControl.value.sandboxType.description }}</p>
+          </div>
+            <div class="checkbox sandboxtype__checkbox">
+              <input  formControlName="checked"
+                      (click)="onInputClick($event)"
+                      class="checkbox__input"
+                      type="checkbox">
+            </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="error" class="alert alert-danger mt-3">
+      {{ error }}
+    </div>
+    <button type="submit" *ngIf="!loading; else loadingView"
+    class="btn btn-primary sandboxtype__submit-button" [disabled]="sandboxTypeForm.invalid">Continue</button>
+  </form>
+</div>
+
+<ng-template #loadingView>
+  <div class="text-center loading">
+    <ai-loading class="inline"></ai-loading>
+  </div>
+</ng-template>

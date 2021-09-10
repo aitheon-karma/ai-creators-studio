@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="11px" viewBox="0 0 13 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>split-mode</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CreatorStudio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="13-CreatorStudio-/-02-Workspace-/-02_01_EditorPage" transform="translate(-1333.000000, -54.000000)">
+            <g id="Group-16" transform="translate(1327.000000, 47.000000)">
+                <g id="split-mode">
+                    <rect id="Rectangle" opacity="0.100000001" x="0" y="0" width="25" height="25"></rect>
+                    <g id="Group-33" transform="translate(6.000000, 7.000000)" fill="#828383">
+                        <path d="M0,0 L13,0 L13,11 L0,11 L0,0 Z M1,3 L1,10 L5,10 L5,3 L1,3 Z M8,3 L8,10 L12,10 L12,3 L8,3 Z" id="Combined-Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

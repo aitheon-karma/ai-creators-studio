@@ -1,0 +1,19 @@
+<ai-loading *ngIf="loading"></ai-loading>
+<div class="workspace-list-wrap" *ngIf="!loading">
+  <h4>Select from all projects</h4>
+  <ng-select [items]="workspaces" [selectOnTab]="true" bindLabel="name" labelForId="_id" [clearable]='false' (ngModelChange)="showSelectedWorkspace($event)" [(ngModel)]='selectedWorkspace' placeholder="Select project">
+    <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+      <div><span [ngOptionHighlight]="search">{{item.name}}</span></div>
+    </ng-template>
+  </ng-select>
+  <h4 class="mt-2">Recent Workspace</h4>
+  <div class="workspace-item-wrap" *ngFor="let recentWorkspace of recentWorkspaces" (click)="openWorkspace(recentWorkspace)"
+    [ngClass]="{'active-project': selectedWorkspace._id === recentWorkspace._id}">
+    {{recentWorkspace.name}}
+  </div>
+  <div class="d-flex justify-content-between">
+    <button id="back" class="btn btn-secondary back_btn mt-3" (click)="onCancel(); $event.preventDefault()">Cancel</button>
+    <button id="create" *ngIf="selectedWorkspace._id" class="btn btn-primary next_btn mt-3" value="1" (click)="openWorkspaceFinish()">Open</button>
+  </div>
+
+</div>

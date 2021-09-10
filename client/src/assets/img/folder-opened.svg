@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="13px" viewBox="0 0 17 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>folder-opened</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CreatorStudio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="13-CreatorStudio-/-02-Workspace-/-02_01_EditorPage" transform="translate(-51.000000, -123.000000)">
+            <g id="Group-24" transform="translate(30.000000, 120.000000)">
+                <g id="Group-8">
+                    <g id="folder-opened" transform="translate(20.000000, 0.000000)">
+                        <rect id="Rectangle-Copy-9" x="0" y="0" width="20" height="20"></rect>
+                        <g id="Group-6" transform="translate(1.000000, 3.000000)">
+                            <path d="M1.13278222,5 L15.8672178,5 C16.4195025,5 16.8672178,5.44771525 16.8672178,6 C16.8672178,6.04146502 16.8646388,6.08288991 16.8594957,6.12403473 L16.1094957,12.1240347 C16.0469421,12.6244636 15.6215411,13 15.1172178,13 L1.88278222,13 C1.37845895,13 0.953057945,12.6244636 0.890504342,12.1240347 L0.140504342,6.12403473 C0.0720018495,5.5760148 0.460727545,5.07622462 1.00874748,5.00772212 C1.04989231,5.00257902 1.09131719,5 1.13278222,5 Z" id="Rectangle" fill="#A8A8A9"></path>
+                            <path d="M2,0 L6.06762695,0 L7.04711914,1 L15,1 C15.5522847,1 16,1.44771525 16,2 L16,3 L1,3 L1,1 C1,0.44771525 1.44771525,1.01453063e-16 2,0 Z" id="Rectangle" fill="#878788"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

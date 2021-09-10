@@ -1,0 +1,90 @@
+<div class="node-preview__view"
+     [class.node-preview__view--height-auto]="!toolboxPreview">
+    <div class="node-preview__view-shadow"
+         *ngIf="toolboxPreview && ((node ?.inputs ?.length > 2 || node ?.outputs ?.length > 2) ||
+            (node ?.type === itemType.TEMPLATE_NODE || node ?.templateVariables ?.inference ?.enabled) &&
+            (node ?.inputs ?.length >= 2 || node ?.outputs ?.length >= 2))"></div>
+    <div class="node-preview__node"
+         [ngStyle]="styles"
+         [draggable]="toolboxPreview"
+         (dragstart)="toolboxPreview ? onDragStart($event, node) : null"
+         [class.node-preview__node--textarea]="node ?.type === itemType.TEXTAREA"
+         [class.node-preview__node--provisional]="node ?.type === itemType.TEMPLATE_NODE"
+         [class.node-preview__node--inactive]="!toolboxPreview"
+         [class.node-preview__node--small]="size == 'small'"
+         [class.node-preview__node--medium]="size == 'medium'"
+         [class.node-preview__node--position-static]="!toolboxPreview ">
+        <ng-container *ngIf="node ?.type !== itemType.TEXTAREA; else textbox">
+            <div class="node-preview__header"
+                 [class.node-preview__header--subgraph-template]="node ?.type === itemType.TEMPLATE"
+                 [class.node-preview__header--subgraph]="node ?.type === itemType.SUBGRAPH">
+                <div class="node-preview__header-left-side">
+                    <div class="node-preview__status"></div>
+                    <div class="d-flex flex-column">
+                        <div class="node-preview__title">{{ node ?.name }}</div>
+                        <div class="node-preview__title--dark node-preview__title--uppercase">
+                            {{ node ?.type === itemType.TEMPLATE ? 'subgraph template' : node ?.name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="node-preview__header-right-side">
+                    <img [src]="logoUrl"
+                         *ngIf="logoUrl"
+                         class="node-preview__logo"
+                         alt="Node Logo">
+                    <div class="icon icon--more"
+                         [class.icon--dynamic]="node ?.type === itemType.TEMPLATE"
+                         (click)="toggleMore($event)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="io-preview">
+                <div class="io-preview__io"
+                     [class.io-preview__io--left]="io.placement === placements.LEFT"
+                     [class.io-preview__io--right]="io.placement === placements.RIGHT"
+                     [class.io-preview__io--center]="io.placement === placements.CENTER"
+                     *ngFor="let io of ioItems">
+                    <div class="io-preview__socket"
+                         [class.io-preview__socket--reverse]="io.placement === placements.RIGHT">
+                        <div class="io-preview__io-dot"></div>
+                        <div class="icon io-preview__socket-chevron"
+                             [class.io-preview__socket-chevron--in]="io.type === 'INPUT'"
+                             [class.io-preview__socket-chevron--out]="io.type === 'OUTPUT'"
+                             [class.icon--chevron-right]="io.placement === placements.LEFT && io.type === 'INPUT' ||
+                                io.placement === placements.RIGHT && io.type === 'OUTPUT' ||
+                                io.placement === placements.CENTER && io.type === 'INPUT'"
+                             [class.icon--chevron-left]="io.placement === placements.RIGHT && io.type === 'INPUT' ||
+                                io.placement === placements.LEFT && io.type === 'OUTPUT' ||
+                                io.placement === placements.CENTER && io.type === 'OUTPUT'">
+                        </div>
+                        <div class="io-preview__io-title"
+                             *ngIf="io.placement !== placements.CENTER">{{ io.title | fileExtension }}</div>
+                    </div>
+                    <div class="io-preview__io-title"
+                         *ngIf="io.placement === placements.CENTER">{{ io.title | fileExtension }}</div>
+                    <div class="io-preview__socket"
+                         *ngIf="io.placement === placements.CENTER"
+                         [class.io-preview__socket--reverse]="true">
+                        <div class="io-preview__io-dot"></div>
+                        <div class="icon io-preview__socket-chevron"
+                             [class.io-preview__socket-chevron--in]="io.type === 'INPUT'"
+                             [class.io-preview__socket-chevron--out]="io.type === 'OUTPUT'"
+                             [class.icon--chevron-right]="io.type === 'OUTPUT'"
+                             [class.icon--chevron-left]="io.type === 'INPUT'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="node-preview__model"
+                 *ngIf="node ?.type === itemType.TEMPLATE_NODE || node ?.templateVariables ?.inference ?.enabled">
+                <div class="node-preview__model-content">
+                    <div class="icon icon--plus icon--size-16px mr--4"></div>
+                    <div class="node-preview__model-text">Choose Model</div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #textbox>Text Box</ng-template>
+    </div>
+</div>

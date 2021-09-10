@@ -1,0 +1,263 @@
+<div class="container-fluid d-flex justify-content-center">
+  <div class="main-wrap">
+    <div class="row">
+      <div class="col-2 pr-0">
+        <!-- <div class="workspaces">
+          <h4 class="grey w-100">Workspaces
+            <span class="icon icon--edit icon--dynamic"
+                  (click)="onEditWorkspaceMode()"
+                  *ngIf="!editWorkspaceMode"></span>
+          </h4>
+          <ul class="workspaces__nav"
+              *ngIf="!showAll">
+            <li class="grey"
+                *ngFor="let recentWorkspace of recentWorkspaces"
+                (click)="openRecentWorkspace(recentWorkspace)">
+              {{ recentWorkspace.name }}
+              <span class="icon icon--delete icon--dynamic icon--size-16px"
+                    *ngIf="editWorkspaceMode"
+                    (click)="showDeleteContent($event, {content: recentWorkspace, parentList: [], type: 'workspace'})"></span>
+            </li>
+          </ul>
+          <ul class="workspaces__nav"
+              *ngIf="showAll">
+            <li class="grey"
+                *ngFor="let workspace of workspaces"
+                (click)="openRecentWorkspace(workspace)">
+              {{ workspace.name }}
+              <span class="icon icon--delete icon--dynamic icon--size-16px"
+                    *ngIf="editWorkspaceMode"
+                    (click)="showDeleteContent($event, {content: workspace, parentList: [], type: 'workspace'})"></span>
+            </li>
+          </ul>
+          <div class="workspaces__show-all"
+               (click)="toggleWorkspaces()"
+               *ngIf="!editWorkspaceMode">
+            <span class="workspaces__show-all-text"
+                  *ngIf="!showAll">show all</span>
+            <span class="workspaces__show-all-text"
+                  *ngIf="showAll">show only recent</span>
+          </div>
+          <div  class="workspaces__new-button button button--medium button--ghost"
+                (click)="createRandomWorkspace()"
+                *ngIf="!editWorkspaceMode">
+            <span class="icon icon--plus icon--size-16px icon--gold"></span>
+            new workspace
+          </div>
+          <div class="d-flex justify-content-end" *ngIf="editWorkspaceMode">
+            <button class="button button--medium button--ghost mr-2"
+                    (click)="offEditWorkspaceMode()">Cancel</button>
+            <button class="button button--medium button--ghost"
+                    (click)="offEditWorkspaceMode()">Save</button>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-8">
+        <div class="projects">
+          <div class="row">
+            <div class="col-12">
+              <div class="button button--medium button--ghost pl-3" (click)="newProject()">
+                <span class="icon icon--plus icon--size-16px icon--gold"></span>
+                new project
+              </div>
+            </div>
+
+            <tabset class="tabs tabs--large w-100" #staticTabs>
+              <!-- Search -->
+              <div class="col-12 mt--16">
+                <div class="search-container search-container--outlined"
+                     [class.search-container--filled]="searchControl?.value ?.length">
+                  <input type="search"
+                         placeholder="Search"
+                         class="search-container__input"
+                         [formControl]="searchControl">
+                  <div class="search-container__button icon icon--search icon--size-16px"></div>
+                  <div class="search-container__button icon icon--close icon--dynamic icon--size-16px"
+                       (click)="clearSearchValue($event)"></div>
+                </div>
+              </div>
+              <!-- /Search -->
+
+              <tab heading="Projects"
+                   [active]="dashboardTab == 'PROJECTS'"
+                   (selectTab)="switchTab('PROJECTS')">
+
+                <!-- Projects -->
+                <h4 class="grey col-12 mt--24 mb--24">Recent Projects</h4>
+                <div class="projects__nav-wrap col-12">
+                  <div class="projects__nav mt--24">
+                    <ai-project-card *ngFor="let recent of recents"
+                                     [project]="recent"
+                                     (openProject)="openRecentProject($event)"
+                                     (viewRepo)="openProject($event)"
+                                     (deleteProject)="showDeleteContent({content: $event, parentList: [], type: 'project'})"
+                                     (activeProjectData)="projectDataChanged($event)"
+                                     (publishProject)="openMarketSettingsModal($event)"
+                                     (archiveProjectEvent)="archiveProject($event)">
+                    </ai-project-card>
+                  </div>
+                </div>
+                <div class="divider"></div>
+                <div class="projects-list-wrap">
+                  <div class="col-12 projects-list-header">
+                    <h4 class="grey">Projects</h4>
+                    <div class="sort-wrap">
+                      <span class="pr-3">Sort by:</span>
+                      <button class="btn-sort btn-sort-left"
+                              [ngClass]="{'btn-sort-active': sortType==='createdAt'}"
+                              (click)="sortSelector('createdAt')">Date Created
+                      </button>
+                      <button class="btn-sort btn-sort-right"
+                              [ngClass]="{'btn-sort-active': sortType==='name'}"
+                              (click)="sortSelector('name')">Name
+                      </button>
+                    </div>
+                  </div>
+
+                  <ai-loading *ngIf="loading"></ai-loading>
+
+                  <div class="projects__nav-wrap col-12" *ngIf="!loading">
+                    <ul class="projects__nav">
+                      <li class="projects__new" (click)="newProject()">
+                        <span class="icon icon--plus icon--size-16px icon--gold"></span>
+                        <span class="grey">New Project</span>
+                      </li>
+
+                      <div *ngIf="!projects.length && searchControl.value" class="not-found-message grey">
+                        <h4>No projects found</h4>
+                      </div>
+
+                      <ai-project-card *ngFor="let project of projects"
+                                       [project]="project"
+                                       (openProject)="openRecentProject($event)"
+                                       (viewRepo)="openProject($event)"
+                                       (deleteProject)="showDeleteContent({content: $event, parentList: [], type: 'project'})"
+                                       (activeProjectData)="projectDataChanged($event)"
+                                       (publishProject)="openMarketSettingsModal($event)"
+                                       (archiveProjectEvent)="archiveProject($event)">
+                      </ai-project-card>
+                    </ul>
+                  </div>
+                </div>
+                <!-- / Projects -->
+              </tab>
+
+              <tab heading="Archived projects"
+                   [active]="dashboardTab == 'ARCHIVED_PROJECTS'"
+                   (selectTab)="switchTab('ARCHIVED_PROJECTS')">
+
+                <div class="mt--64" *ngIf="loading">
+                  <ai-loading></ai-loading>
+                </div>
+
+                <!-- Archived Projects -->
+                <div class="projects__nav mt--24" style="padding: 0 16px" *ngIf="!loading">
+                  <ai-project-card *ngFor="let project of archiveProjects"
+                                   [project]="project"
+                                   (openProject)="openRecentProject($event)"
+                                   (viewRepo)="openProject($event)"
+                                   (deleteProject)="showDeleteContent({content: $event, parentList: [], type: 'project'})"
+                                   (activeProjectData)="projectDataChanged($event)"
+                                   (archiveProjectEvent)="archiveProject($event)">
+                  </ai-project-card>
+                </div>
+                <div class="grey col-12 mt--24 mb--24 text-center" *ngIf="!archiveProjects?.length && !searchControl.value">
+                  <h4>No archived projects yet</h4>
+                </div>
+                <div *ngIf="!archiveProjects.length && searchControl.value" class="not-found-message grey">
+                  <h4>No archived projects found</h4>
+                </div>
+                <!-- / Archived Projects -->
+              </tab>
+            </tabset>
+          </div>
+        </div>
+      </div>
+
+      <!--      <div class="col-2">-->
+      <!--        <div class="learn">-->
+      <!--          <h4 class="grey">Learn</h4>-->
+      <!--          <a  *ngFor="let tutorial of tutorials | slice:0:5"-->
+      <!--              [href]="tutorial.link"-->
+      <!--              target="blank"-->
+      <!--              class="learn__link">-->
+      <!--            <div class="learn__wrap">-->
+      <!--              <div  class="learn__item"-->
+      <!--                    [ngStyle]="{'background-image': 'url(' + tutorial.image?.url + ')'}">-->
+      <!--                <span>{{tutorial.name}}</span>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--          </a>-->
+      <!--          <a  routerLink="/tutorials"-->
+      <!--              class="learn__all-link button button&#45;&#45;medium button&#45;&#45;ghost"-->
+      <!--              *ngIf="tutorials?.length > 4">-->
+      <!--            All tutorials-->
+      <!--          </a>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+    </div>
+  </div>
+</div>
+
+<ng-template #newProjectModal>
+  <div class="modal-header p--16">
+    <h4 class="modal-title pull-left">New Project</h4>
+    <button class="icon icon--close icon--dynamic pull-right"
+            type="button"
+            (click)="closeModal(projectsModalRef)">
+    </button>
+  </div>
+  <div class="">
+    <ai-project-form-root class="no-border"
+                          (onClose)="closeModal(projectsModalRef)"
+                          [workspaces]='workspaces'
+                          [getWorkspace]='getWorkspace'></ai-project-form-root>
+  </div>
+</ng-template>
+
+<ng-template #newWorkspaceModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">New Workspace</h4>
+    <button type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="closeModal(newWorkspaceModalRef)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ai-workspace-open class="no-border"
+                       (onCancelModal)="closeModal(newWorkspaceModalRef)"
+                       [workspacesLength]='workspaces.length'></ai-workspace-open>
+  </div>
+</ng-template>
+
+<ng-template #openWorkspaceModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Select Workspace</h4>
+    <button type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="closeModal(openWorkspaceModalRef)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ai-workspace-list class="no-border"
+                       (onCloseOpenWorkspace)="closeModal(openWorkspaceModalRef)"
+                       (onSaved)="onWorkspaceSelect($event)"
+                       [workspaces]='workspaces'></ai-workspace-list>
+  </div>
+</ng-template>
+
+<ng-template #openProjectModal>
+  <ai-sandboxes-dashboard [isModalView]="true"
+                          [projectId]="selectedProjectId"
+                          (sandboxCreated)="openProjectModalRef.hide()">
+  </ai-sandboxes-dashboard>
+</ng-template>
+
+<ai-generic-confirm #genericConfirm></ai-generic-confirm>
+
+<ai-store-request-modal></ai-store-request-modal>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>new-folder</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CreatorStudio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="13-CreatorStudio-/-02-Workspace-/-02_01_EditorPage" transform="translate(-277.000000, -88.000000)">
+            <g id="Group-5" transform="translate(0.000000, 80.000000)">
+                <g id="new-folder" transform="translate(275.000000, 5.000000)">
+                    <rect id="Rectangle-Copy-9" x="5.68434189e-14" y="0" width="20" height="20"></rect>
+                    <path d="M14,14 L11,14 L11,16 L3,16 C2.44771525,16 2,15.5522847 2,15 L2,8 C2,7.44771525 2.44771525,7 3,7 L16,7 C16.5522847,7 17,7.44771525 17,8 L17,11 L14,11 L14,14 Z" id="Combined-Shape" fill="#A8A8A9"></path>
+                    <path d="M3,3 L7.06762695,3 L8.04711914,4 L16,4 C16.5522847,4 17,4.44771525 17,5 L17,6 L2,6 L2,4 C2,3.44771525 2.44771525,3 3,3 Z" id="Rectangle" fill="#7E7E7E"></path>
+                    <path d="M17,16 L20,16 L20,17 L17,17 L17,20 L16,20 L16,17 L13,17 L13,16 L16,16 L16,13 L17,13 L17,16 Z" id="Combined-Shape" fill="#DCBC65"></path>
+                    <g id="Group-6" transform="translate(2.000000, 3.000000)"></g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

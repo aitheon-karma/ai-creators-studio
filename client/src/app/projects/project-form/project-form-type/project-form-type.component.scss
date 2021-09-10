@@ -1,0 +1,103 @@
+.project-type {
+    padding: 30px;
+    width: 580px;
+    height: 584px;
+    overflow: auto;
+    background: #1a1a1a;
+    &__nav {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        li {
+            display: block;
+            width: 163px;
+            height: 163px;
+            margin-bottom: 15px;
+            border-radius: 2px;
+            transition: all 0.3s ease-in;
+            .type-btn {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                background: #282828;
+                border-radius: 2px;
+                border: solid 1px #282828;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                input {
+                    position: absolute;
+                    left: -10000px;
+                }
+                img {
+                    margin-top: 30px;
+                }
+                .projName {
+                    margin-top: 38px;
+                }
+            }
+        }
+        .checked {
+            border: solid 1px #dcbc65 !important;
+            .checker {
+                border: solid 1px #dcbc65;
+                .inner {
+                    display: block;
+                }
+            }
+        }
+        .disabled {
+            opacity: 0.4;
+        }
+    }
+    &__title {
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-weight: normal;
+        letter-spacing: 0.2px;
+    }
+}
+
+.type-btn {
+    position: relative;
+    .checker {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        border: 1px solid #8c8c8c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .inner {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #dcbc65;
+            display: none;
+        }
+    }
+}
+
+.type-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin-top: 30px;
+    background: #1a1a1a;
+    border-radius: 50%;
+}
+
+.type-icon {
+    width: 32px;
+    height: 32px;
+    background-size: 85%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>layout</title>
+    <desc>Created with Sketch.</desc>
+    <g id="CreatorStudio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="13-CreatorStudio-/-02-Workspace-/-02_01_EditorPage" transform="translate(-188.000000, -88.000000)">
+            <g id="Group-5" transform="translate(0.000000, 80.000000)">
+                <g id="layout" transform="translate(185.000000, 5.000000)">
+                    <rect id="Rectangle-Copy-9" x="0" y="0" width="20" height="20"></rect>
+                    <g id="Group-41" transform="translate(3.000000, 3.000000)">
+                        <path d="M10.5,3.5 L10.5,0.5 L0.5,0.5 L0.5,10.5 L3.5,10.5 L3.5,3.5 L10.5,3.5 Z" id="Combined-Shape" stroke="#979797"></path>
+                        <rect id="Rectangle" stroke="#DCBC65" x="3.5" y="3.5" width="10" height="10"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,207 @@
+<form class="mb-3" novalidate [formGroup]="projectForm">
+  <div class="project-form">
+    <div class="project-form-section">
+      <label  class="input-label"
+              [hidden]="submitted && projectForm.get('projectName').hasError('required') || !available">
+        Project name
+      </label>
+      <label class="text-danger"
+             *ngIf="submitted && projectForm.get('projectName').hasError('required')">
+        Project name is required
+      </label>
+      <label class="text-danger"
+            *ngIf="!available">
+        Project name is already exist
+      </label>
+      <div  class="input-wrap input-wrap--contained input-wrap--small"
+            [class.input-wrap--error]="submitted && projectForm.get('projectName').hasError('required') || !available">
+        <input  type="text"
+                class="input-wrap__input"
+                autocomplete="off"
+                formControlName="projectName"
+                name="projectNameTitle">
+      </div>
+    </div>
+    <!-- <div class="workspace" *ngIf="getWorkspace">
+      <div class="workspace__wrap">
+        <label class="grey">Workspace</label>
+        <div  class="workspace__name"
+              (click)="toggleWorkspaceSelect($event)"
+              [class.workspace__name--active]="workspaceSelectOpened">
+          {{Workspace.name}}
+          <i class="fa project-expand-icon" [class.opened]="workspaceSelectOpened" [class.fa-caret-up]="workspaceSelectOpened"
+            [class.fa-caret-down]="!workspaceSelectOpened"></i>
+        </div>
+        <div class="workspace__select" [class.opened]='workspaceSelectOpened'>
+          <div class="workspace__add yellow" *ngIf="!addingNewWorkspace" (click)="toggleNewWorkspace($event)">
+            <span>+</span> New workspace
+          </div>
+          <div class="workspace__add yellow" *ngIf="addingNewWorkspace">
+            <input class="form-control name-control" type="text" formControlName="newWorkspaceName" [(ngModel)]='Workspace.name'
+              *ngIf="NewWorkspace" name="workspaceName">
+            <span class="add-new yellow" (click)="addNewWorkspace()">+</span>
+          </div>
+          <div class="workspace__list">
+            <h4 class="grey">Recent workspaces</h4>
+            <ul class="workspace__list-recent">
+              <li *ngFor="let recent of recentWorkspaces" (click)="addWorkspace(recent)" [class.selected]='recent._id===Workspace._id'>
+                {{recent.name}}
+              </li>
+            </ul>
+            <h4 class="grey">All workspaces</h4>
+            <ul class="workspace__list-recent">
+              <li *ngFor="let recent of workspaces" (click)="addWorkspace(recent)" [class.selected]='recent._id===Workspace._id'>
+                {{recent.name}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <small *ngIf="submitted && projectForm.get('newWorkspaceName').hasError('required')" class="text-danger label-danger">
+          New Workspace Name Is Required!
+        </small>
+      </div>
+    </div> -->
+    <!-- <div class="spec-type" *ngIf="project.projectType==='ROBOT'">
+      <label class="grey" for="newInt">{{project.projectType | prettyEnum }} type</label>
+      <ng-select class="select-wrap" [items]="arraySpecTypes" [selectOnTab]="true" bindLabel="name" labelForId="_id"
+        [clearable]='false' (ngModelChange)="showSelectedSpecType($event)" placeholder="Select special type"
+        formControlName="selectSpecType">
+        <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+          <div><span [ngOptionHighlight]="search">{{item.name}}</span></div>
+        </ng-template>
+      </ng-select>
+      <small *ngIf="submitted && (projectForm.get('selectSpecType').hasError('required'))" class="text-danger">
+        Field is required
+      </small>
+    </div> -->
+    <div  class="language-select project-form-section"
+          *ngIf="specProjType?.key === 'COMPUTE_NODE' || specProjType?.key === 'LIBRARY'">
+      <label  class="grey"
+              [hidden]="submitted && (projectForm.get('selectRuntime').hasError('required'))">
+          Runtime
+      </label>
+      <label *ngIf="submitted && (projectForm.get('selectRuntime').hasError('required'))"
+             class="text-danger">
+        Select runtime
+      </label>
+      <ng-select  class="dropdown dropdown--contained"
+                  [class.dropdown--error]="submitted && (projectForm.get('selectRuntime').hasError('required'))"
+                  [items]="projectRunTime"
+                  [selectOnTab]="true"
+                  [clearable]="false"
+                  [searchable]="false"
+                  placeholder="Select runtime"
+                  formControlName="selectRuntime">
+        <ng-template ng-option-tmp let-item="item">
+          {{ item.replace('_', ' ') }}
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          {{ item.replace('_', ' ') }}
+        </ng-template>
+      </ng-select>
+    </div>
+
+    <div  class="language-select project-form-section" 
+          *ngIf="projectForm.get('selectRuntime').value && (specProjType?.key === 'COMPUTE_NODE' || specProjType?.key === 'LIBRARY')">
+      <label  class="grey"
+              [hidden]="submitted && (projectForm.get('selectLanguage').hasError('required'))">
+        Programming Language
+      </label>
+      <label *ngIf="submitted && (projectForm.get('selectLanguage').hasError('required'))"  
+            class="text-danger">
+        Select Language
+      </label>
+      <ng-select  class="dropdown dropdown--contained"
+                  [class.dropdown--error]="submitted && (projectForm.get('selectLanguage').hasError('required'))"
+                  [items]="projectLanguages"
+                  [clearable]="false"
+                  [searchable]="false"
+                  placeholder="Select language"
+                  formControlName="selectLanguage">
+        <ng-template ng-option-tmp let-item="item">
+          {{ item === 'CPP' ? 'C++' : item | titlecase }}
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          {{ item === 'CPP' ? 'C++' : item | titlecase }}
+        </ng-template>
+      </ng-select>
+    </div>
+
+    <div class="language-select" *ngIf="specProjType?.key === 'APP'">
+      <label  [hidden]="submitted && (projectForm.get('projectSubType').hasError('required'))"
+              class="grey">
+        App type
+      </label>
+      <label  *ngIf="submitted && (projectForm.get('projectSubType').hasError('required'))"
+              class="text-danger">
+        Select sub type
+      </label>
+      <ng-select  class="dropdown dropdown--contained"
+                  [items]="projectSubTypes"
+                  [selectOnTab]="true"
+                  bindLabel="name"
+                  bindValue="id"
+                  labelForId="id"
+                  [clearable]="false"
+                  [searchable]="false"
+                  placeholder="Select language"
+                  formControlName="projectSubType">
+        <ng-template ng-option-tmp let-item="item">
+          {{ item | titlecase }}
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          {{ item | titlecase }}
+        </ng-template>
+      </ng-select>
+    </div>
+    <div class="project-form-section">
+      <label class="grey">Project summary</label>
+      <div class="textarea-wrap textarea-wrap--contained">
+        <textarea class="textarea-wrap__textarea" type="text" rows="10"
+                  placeholder="Input project summary"
+                  formControlName="summary"></textarea>
+      </div>
+    </div>
+    <!-- <div class="language-select" *ngIf="project.language && currentEditors.length">
+      <label for="ceditor" class="grey">Editor</label>
+      <div>
+        <ng-select  class="dropdown dropdown--contained"
+                    id="editor"
+                    [items]="currentEditors"
+                    [selectOnTab]="true"
+                    bindLabel="name"
+                    labelForId="id"
+                    [clearable]="false"
+                    [searchable]="false"
+                    (ngModelChange)="showSelectedEditor($event)"
+                    placeholder="Select editor"
+                    formControlName="selectEditor">
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+            <div><span [ngOptionHighlight]="search">{{item.name}}</span></div>
+          </ng-template>
+        </ng-select>
+        <small *ngIf="submitted && (projectForm.get('selectEditor').hasError('required'))" class="text-danger">
+          Select Editor
+        </small>
+      </div>
+    </div> -->
+    <!-- <div class="" *ngIf="project.language && currentSimulators.length">
+      <h4 class="grey projects-new-switcher">Simulators</h4>
+      <label  [for]="currentSimulators[i].value"
+              class="switch-container"
+              formArrayName="simulatorsArray"
+              *ngFor="let sim of formSimData.controls; let i = index">
+        <label [for]="currentSimulators[i].value">{{currentSimulators[i].name}}</label>
+        <label class="switch">
+          <input  [id]="currentSimulators[i].value"
+                  [formControl]='sim'
+                  [name]="currentSimulators[i].value"
+                  type="checkbox"
+                  checked>
+          <span class="slider round"></span>
+        </label>
+      </label>
+    </div>
+     -->
+  </div>
+</form>

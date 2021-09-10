@@ -1,0 +1,69 @@
+<h2>Template Settings</h2>
+<div class="row">
+  <div class="col-3">
+    <button class="btn btn-primary" type="submit" (click)="createNew()">New</button>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let template of templatesList" (click)="buildForm(template)">
+        {{ template.runtime }} {{ template.projectType }} {{ template.language }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-9">
+    <form [formGroup]="templateForm" *ngIf="templateForm" (ngSubmit)="onSubmit()" class="">
+      <div class="form-group">
+        <select class="form-control" formControlName="runtime">
+          <option value="AOS">AOS</option>
+          <option value="AOS_CLOUD">AOS CLOUD</option>
+          <option value="AOS_EMBEDDED">AOS EMBEDDED</option>
+        </select>
+        <label class="input-text">Runtime</label>
+      </div>
+
+      <div class="form-group">
+        <select class="form-control" formControlName="projectType">
+          <option value="APP">APP</option>
+          <option value="SERVICE">SERVICE</option>
+          <option value="INTERFACE">INTERFACE</option>
+          <option value="DIGIBOT">DIGIBOT</option>
+          <option value="ROBOT">ROBOT</option>
+          <option value="LIBRARY">LIBRARY</option>
+          <option value="COMPUTE_NODE">COMPUTE_NODE</option>
+          <option value="DEVICE_NODE">DEVICE_NODE</option>
+          <option value="APP_COMPONENT">APP COMPONENT</option>
+        </select>
+        <label class="input-text">Project Type</label>
+      </div>
+
+      <div class="form-group">
+        <select class="form-control" formControlName="language">
+          <option value="BLOCK">BLOCK</option>
+          <option value="TYPESCRIPT">TYPESCRIPT</option>
+          <option value="JAVASCRIPT">JAVASCRIPT</option>
+          <option value="PYTHON">PYTHON</option>
+          <option value="C">C</option>
+          <option value="CPP">CPP</option>
+        </select>
+        <label class="input-text">Language</label>
+      </div>
+      <div class="input">
+        <ng-select [items]="templateRepositories$ | async" bindLabel="name" placeholder="Select repository" [clearable]="false" autofocus bindValue="id" formControlName="repositoryId">
+        </ng-select>
+      </div>
+
+      <div class="">
+        <textarea class="form-control" rows="10" formControlName="dockerfile"></textarea>
+        <label class="input-text">Dockerfile</label>
+      </div>
+
+      <div class="markup-setting__action d-flex">
+        <button type="submit" class="btn btn-primary ml-auto">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #loadingView>
+  <div class="mt-3">
+    <ai-loading></ai-loading>
+  </div>
+</ng-template>
